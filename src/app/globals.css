@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bakyson-orange: #FF6B00;
+  --color-bakyson-orange-dark: #E55A00;
+  --color-bakyson-black: #0A0A0A;
+  --color-bakyson-white: #FFFFFF;
+  --color-bakyson-gray: #F5F5F5;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.orange-gradient {
+  background: linear-gradient(135deg, #FF6B00 0%, #E55A00 100%);
+}
+
+.text-balance {
+  text-wrap: balance;
+}

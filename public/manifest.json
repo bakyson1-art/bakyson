@@ -1,0 +1,43 @@
+{
+  "name": "Bakyson - ICT Solutions for Sub-Saharan Africa",
+  "short_name": "Bakyson",
+  "description": "Design and Build ELV services provider for Hospitality, Healthcare, Corporates, and Learning Institutions across Sub-Saharan Africa.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "technology", "enterprise"],
+  "icons": [
+    {
+      "src": "/icons/icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View Bakyson ICT services",
+      "url": "/services"
+    },
+    {
+      "name": "Client Portal",
+      "short_name": "Portal",
+      "description": "Access Bakyson client portal",
+      "url": "/portal/login"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Contact Bakyson team",
+      "url": "/contact"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

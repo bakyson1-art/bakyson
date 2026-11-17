@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bakyson.com/sitemap.xml
+
+Disallow: /portal/
+Disallow: /api/
