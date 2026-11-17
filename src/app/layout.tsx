@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import ClientShell from "@/components/ClientShell";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition/page-transition";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-heading" });
 
 export const metadata: Metadata = {
   title: {
@@ -59,10 +60,12 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Bakyson" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#0A0A0A" />
       </head>
-      <body className="bg-bakyson-gray text-bakyson-black font-sans antialiased selection:bg-bakyson-orange selection:text-white">
+      <body className="bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-foreground-inverse">
         <SkipNavigation />
         <ClientShell />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <script
           dangerouslySetInnerHTML={{
@@ -84,7 +87,7 @@ function SkipNavigation() {
   return (
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-bakyson-black focus:rounded focus:font-bold"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-md focus:font-bold"
     >
       Skip to main content
     </a>

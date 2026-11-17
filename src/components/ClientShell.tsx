@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import LiveChatWidget from "@/components/LiveChatWidget";
 
 const NAV_LINKS = [
@@ -47,14 +48,17 @@ function Navbar({
   setIsMobileMenuOpen: (open: boolean) => void;
 }) {
   return (
-    <nav className="sticky top-0 z-50 bg-bakyson-white/95 backdrop-blur-md border-b border-black/10">
+    <nav
+      className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border border-border focus-within:border-border"
+      aria-label="Main navigation"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 orange-gradient rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
+            <div className="size-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary">
               B
             </div>
-            <span className="font-extrabold text-xl tracking-tight text-bakyson-black italic">
+            <span className="font-heading font-extrabold text-xl tracking-tight text-foreground italic">
               Bakyson
             </span>
           </Link>
@@ -66,25 +70,28 @@ function Navbar({
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
                   link.name === "Client Portal"
-                    ? "text-bakyson-orange font-bold"
-                    : "text-bakyson-black/70 hover:text-bakyson-orange"
+                    ? "text-primary font-bold"
+                    : "text-foreground/70 hover:text-primary"
                 }`}
+                aria-current={link.href === "/" ? "page" : undefined}
               >
                 {link.name}
               </Link>
             ))}
-            <Link
-              href="/portal/login"
-              className="bg-bakyson-orange text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-bakyson-orange-dark transition-colors shadow-lg shadow-orange/20 hover:shadow-orange/40"
+            <Button
+              asChild
+              variant="primary"
+              size="sm"
+              className="shadow-lg shadow-primary hover:shadow-primary"
             >
-              Client Portal
-            </Link>
+              <Link href="/portal/login">Client Portal</Link>
+            </Button>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden text-bakyson-black"
+              className="md:hidden text-foreground p-2 rounded-md hover:bg-surface-hover hover:text-primary"
               aria-label="Open menu"
             >
               <svg
@@ -106,7 +113,7 @@ function Navbar({
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-bakyson-white border-b border-black/10">
+        <div className="md:hidden bg-background border-b border-border">
           <div className="px-4 py-4 space-y-1">
             {links.map((link) => (
               <Link
@@ -115,20 +122,16 @@ function Navbar({
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`block px-4 py-3 text-sm font-medium transition-colors ${
                   link.name === "Client Portal"
-                    ? "text-bakyson-orange font-bold bg-bakyson-orange/10"
-                    : "text-bakyson-black/70 hover:bg-black/5 hover:text-bakyson-orange"
+                    ? "text-primary font-bold bg-primary/10"
+                    : "text-foreground/70 hover:bg-surface-hover hover:text-primary"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Link
-              href="/portal/login"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center bg-bakyson-orange text-white px-4 py-3 rounded-lg font-bold hover:bg-bakyson-orange-dark transition-colors"
-            >
-              Client Portal
-            </Link>
+            <Button asChild variant="primary" size="sm" className="w-full shadow-lg shadow-primary">
+              <Link href="/portal/login">Client Portal</Link>
+            </Button>
           </div>
         </div>
       )}
