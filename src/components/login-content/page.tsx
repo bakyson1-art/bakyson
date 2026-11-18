@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 32 },
@@ -163,6 +164,8 @@ export default function LoginContent() {
               type="submit"
               disabled={submitting}
               className="w-full bg-primary text-background py-4 rounded-xl font-bold text-lg hover:bg-primary-hover transition-all disabled:opacity-50 shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
+              whileTap={{ scale: motionTokens.scale.press }}
+              transition={springs.snappy}
             >
               {submitting ? "Signing in..." : "Sign In"}
               <ArrowRight className="w-4 h-4" />
