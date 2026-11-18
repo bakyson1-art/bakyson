@@ -47,15 +47,15 @@ export default function LiveChatWidget() {
     <div className="fixed bottom-6 right-6 z-[60] font-sans">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-bakyson-orange flex items-center justify-center text-white shadow-2xl shadow-orange/40 hover:scale-105 transition-transform duration-200"
+        className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white shadow-2xl shadow-lg hover:scale-105 transition-transform duration-200"
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 h-[500px] bg-white rounded-2xl shadow-2xl border border-black/10 flex flex-col overflow-hidden">
-          <div className="bg-bakyson-black text-white px-4 py-3 rounded-t-xl flex items-center justify-between">
+        <div className="fixed bottom-24 right-6 w-80 h-[500px] bg-background rounded-2xl shadow-2xl border border-border/20 flex flex-col overflow-hidden">
+          <div className="bg-foreground text-white px-4 py-3 rounded-t-xl flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <span className="text-sm font-semibold">Bakyson Support</span>
@@ -65,8 +65,8 @@ export default function LiveChatWidget() {
             {messages.map((msg) => {
               const isUser = msg.sender === "user";
               const bubbleClass = isUser
-                ? "bg-bakyson-orange text-white"
-                : "bg-bakyson-gray text-bakyson-black";
+                ? "bg-primary text-white"
+                : "bg-muted text-foreground";
               const alignClass = isUser
                 ? "ml-auto text-right"
                 : "mr-auto text-left";
@@ -84,16 +84,16 @@ export default function LiveChatWidget() {
               );
             })}
             {isTyping && (
-              <div className="mr-auto p-3 rounded-2xl bg-bakyson-gray text-bakyson-black">
+              <div className="mr-auto p-3 rounded-2xl bg-muted text-foreground">
                 <div className="flex gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-bakyson-black/50 animate-bounce" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-bakyson-black/50 animate-bounce" style={{ animationDelay: "0.2s" }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-bakyson-black/50 animate-bounce" style={{ animationDelay: "0.4s" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-foreground/50 animate-bounce" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-foreground/50 animate-bounce" style={{ animationDelay: "0.2s" }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-foreground/50 animate-bounce" style={{ animationDelay: "0.4s" }} />
                 </div>
               </div>
             )}
           </div>
-          <div className="p-3 bg-white border-t border-black/10">
+          <div className="p-3 bg-background border-t border-border/20">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -106,12 +106,12 @@ export default function LiveChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
-                className="flex-1 px-4 py-3 rounded-xl border border-black/20 text-sm text-bakyson-black focus:ring-2 focus:ring-bakyson-orange focus:border-bakyson-orange outline-none placeholder:text-bakyson-black/40"
+                className="flex-1 px-4 py-3 rounded-xl border border-border/30 text-sm text-foreground focus:ring-2 focus:ring-primary focus:border-primary outline-none placeholder:text-foreground/40"
               />
               <button
                 type="submit"
                 disabled={!input.trim()}
-                className="bg-bakyson-orange text-white px-4 py-3 rounded-xl hover:bg-bakyson-orange-dark transition-colors disabled:opacity-50 disabled:pointer-events-none"
+                className="bg-primary text-white px-4 py-3 rounded-xl hover:bg-primary-hover transition-colors disabled:opacity-50 disabled:pointer-events-none"
               >
                 <Send className="w-4 h-4" />
               </button>

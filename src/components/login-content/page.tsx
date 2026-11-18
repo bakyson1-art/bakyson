@@ -30,11 +30,21 @@ export default function LoginContent() {
     setError("");
     setSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch("/api/auth/callback/credentials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (email === "demo@bakyson.com" && password === "demo123") {
-      window.location.href = "/portal/2fa?email=" + encodeURIComponent(email);
-    } else {
+      if (res.ok) {
+        window.location.href = "/portal/2fa";
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.message || "Invalid email or password");
+        setSubmitting(false);
+      }
+    } catch {
       setError("Invalid email or password. Try demo@bakyson.com / demo123");
       setSubmitting(false);
     }
@@ -90,23 +100,35 @@ export default function LoginContent() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-bold text-foreground mb-2">Email Address</label>
+              <label htmlFor="email-input" className="block text-sm font-bold text-foreground mb-2">
+                Email Address
+              </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/40" />
                 <Input
+                  id="email-input"
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@company.com"
-                  className="w-full pl-10 pr-4 py-4 rounded-xl border border-background/20 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-foreground"
+                  className={`w-full pl-10 pr-4 py-4 rounded-xl border border-background/20 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-foreground ${error ? "border-red-500" : ""}`}
+                  aria-describedby={error ? "email-error" : undefined}
+                  aria-invalid={error ? true : undefined}
                 />
               </div>
+              {error && (
+                <p id="email-error" className="text-xs text-red-600 mt-1">
+                  {error}
+                </p>
+              )}
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-bold text-foreground">Password</label>
+                <label htmlFor="password-input" className="text-sm font-bold text-foreground">
+                  Password
+                </label>
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -118,15 +140,23 @@ export default function LoginContent() {
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/40" />
                 <Input
+                  id="password-input"
                   type={showPassword ? "text" : "password"}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-4 rounded-xl border border-background/20 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-foreground"
+                  className={`w-full pl-10 pr-4 py-4 rounded-xl border border-background/20 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-foreground ${error ? "border-red-500" : ""}`}
+                  aria-describedby={error ? "password-error" : undefined}
+                  aria-invalid={error ? true : undefined}
                 />
                 <Eye className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-foreground/40 cursor-pointer" />
               </div>
+              {error && (
+                <p id="password-error" className="text-xs text-red-600 mt-1">
+                  {error}
+                </p>
+              )}
             </div>
 
             <Button

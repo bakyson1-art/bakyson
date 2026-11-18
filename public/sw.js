@@ -68,8 +68,8 @@ self.addEventListener("push", (event) => {
   const data = event.data.json();
   const options = {
     body: data.body || "You have a new notification from Bakyson",
-    icon: "/icons/icon-192x192.png",
-    badge: "/icons/icon-72x72.png",
+    icon: "/icons/icon-192x192.svg",
+    badge: "/icons/icon-72x72.svg",
     tag: data.tag || "bakyson-notification",
     data: data.url || "/",
     actions: [

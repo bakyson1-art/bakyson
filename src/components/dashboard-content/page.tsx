@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Bell, LogOut, User, MapPin, Clock, ArrowRight, Plus, Edit, Download, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,6 +93,65 @@ export default function DashboardContent() {
     description: "",
     priority: "Medium",
   });
+  const [user, setUser] = useState<{ name?: string; email?: string; image?: string } | null>(null);
+  const [sessionLoading, setSessionLoading] = useState(true);
+  const [projects, setProjects] = useState<Array<{
+    id: string;
+    name: string;
+    status: string;
+    progress: number;
+    location?: string;
+    startDate?: string;
+    endDate?: string;
+    manager?: string;
+    description?: string;
+  }>>([]);
+  const [supportTickets, setSupportTickets] = useState<Array<{
+    id: string;
+    subject: string;
+    status: string;
+    priority: string;
+    created: string;
+  }>>([]);
+  const [dataLoading, setDataLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/auth/session")
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data.user || null);
+        setSessionLoading(false);
+      })
+      .catch(() => {
+        setSessionLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchData = async () => {
+      try {
+        const [projectsRes, ticketsRes] = await Promise.all([
+          fetch("/api/projects"),
+          fetch("/api/tickets"),
+        ]);
+        if (projectsRes.ok) {
+          const projectsData = await projectsRes.json();
+          if (mounted) setProjects(projectsData.projects || []);
+        }
+        if (ticketsRes.ok) {
+          const ticketsData = await ticketsRes.json();
+          if (mounted) setSupportTickets(ticketsData.tickets || []);
+        }
+      } catch (error) {
+        console.warn("Failed to fetch dashboard data, using empty state:", error);
+      } finally {
+        if (mounted) setDataLoading(false);
+      }
+    };
+    fetchData();
+    return () => { mounted = false; };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -136,15 +195,18 @@ export default function DashboardContent() {
               </button>
               <div className="flex items-center gap-2 pl-4 border-l border-border">
                 <div className="text-right hidden md:block">
-                  <p className="text-sm font-bold text-foreground">John Doe</p>
-                  <p className="text-xs text-foreground/50">john@company.com</p>
+                  <p className="text-sm font-bold text-foreground">{user?.name ?? "John Doe"}</p>
+                  <p className="text-xs text-foreground/50">{user?.email ?? "john@company.com"}</p>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-surface flex items-center justify-center text-foreground/60 font-bold text-xs">
-                  JD
+                  {user?.name?.charAt(0) || user?.email?.charAt(0) || "JD"}
                 </div>
               </div>
               <button
-                onClick={() => (window.location.href = "/portal/login")}
+                onClick={async () => {
+                    await fetch("/api/auth/signout", { method: "POST" });
+                    window.location.href = "/portal/login";
+                  }}
                 className="ml-4 text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"
               >
                 Sign Out <LogOut className="w-4 h-4" />
@@ -156,17 +218,39 @@ export default function DashboardContent() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div variants={sectionVariants} initial="hidden" animate="visible">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Welcome back, John</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            Welcome back, {user?.name?.split(" ")[0] || "there"}
+          </h1>
           <p className="text-foreground/60">Here's what's happening with your Bakyson projects.</p>
         </motion.div>
 
         {/* Quick Stats */}
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid md:grid-cols-4 gap-6 mb-8">
           {[
-            { label: "Active Projects", value: "2", icon: MapPin, color: "bg-primary/10 text-primary" },
-            { label: "Open Tickets", value: "1", icon: Clock, color: "bg-primary/10 text-primary" },
-            { label: "Completed", value: "1", icon: CheckCircle, color: "bg-green-100 text-green-600" },
-            { label: "Account Manager", value: "Sarah Njeri", icon: User, color: "bg-surface text-foreground" },
+            {
+              label: "Active Projects",
+              value: String(projects.filter((p) => p.status !== "Completed").length),
+              icon: MapPin,
+              color: "bg-primary/10 text-primary",
+            },
+            {
+              label: "Open Tickets",
+              value: String(supportTickets.filter((t) => t.status !== "Closed" && t.status !== "Resolved").length),
+              icon: Clock,
+              color: "bg-primary/10 text-primary",
+            },
+            {
+              label: "Completed",
+              value: String(projects.filter((p) => p.status === "Completed").length),
+              icon: CheckCircle,
+              color: "bg-green-100 text-green-600",
+            },
+            {
+              label: "Account Manager",
+              value: user?.name ?? "Sarah Njeri",
+              icon: User,
+              color: "bg-surface text-foreground",
+            },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -207,7 +291,7 @@ export default function DashboardContent() {
                         <MapPin className="w-4 h-4" />
                       </div>
                       <span className="text-xs font-bold text-foreground/60 uppercase tracking-wider">
-                        {project.location.split(",")[0]}
+                        {(project.location || "").split(",")[0]}
                       </span>
                     </div>
                     <span
@@ -233,13 +317,13 @@ export default function DashboardContent() {
                     <div className="flex items-center gap-2">
                       <Clock className="w-3 h-3" />
                       <span>
-                        {new Date(project.startDate).toLocaleDateString()} -
-                        {new Date(project.endDate).toLocaleDateString()}
+                        {project.start_date ? new Date(project.start_date).toLocaleDateString() : "TBD"} -
+                        {project.end_date ? new Date(project.end_date).toLocaleDateString() : "TBD"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <User className="w-3 h-3" />
-                      <span>{project.manager}</span>
+                      <span>{project.manager || "Not assigned"}</span>
                     </div>
                   </div>
                   <div className="mt-6 pt-4 border-t border-border">
@@ -290,7 +374,7 @@ export default function DashboardContent() {
                           {ticket.priority}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-foreground/60">{ticket.created}</td>
+                      <td className="px-6 py-4 text-sm text-foreground/60">{ticket.created_at ? new Date(ticket.created_at).toLocaleDateString() : "TBD"}</td>
                     </tr>
                   ))}
                 </tbody>

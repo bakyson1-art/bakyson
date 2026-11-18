@@ -186,8 +186,11 @@ export default function ContactContent() {
                   >
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-bold text-foreground mb-1">Full Name</label>
+                        <label htmlFor="contact-name" className="block text-sm font-bold text-foreground mb-1">
+                          Full Name
+                        </label>
                         <input
+                          id="contact-name"
                           type="text"
                           required
                           value={formData.name}
@@ -197,8 +200,11 @@ export default function ContactContent() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-foreground mb-1">Email Address</label>
+                        <label htmlFor="contact-email" className="block text-sm font-bold text-foreground mb-1">
+                          Email Address
+                        </label>
                         <input
+                          id="contact-email"
                           type="email"
                           required
                           value={formData.email}
@@ -210,8 +216,11 @@ export default function ContactContent() {
                     </div>
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-bold text-foreground mb-1">Phone Number</label>
+                        <label htmlFor="contact-phone" className="block text-sm font-bold text-foreground mb-1">
+                          Phone Number
+                        </label>
                         <input
+                          id="contact-phone"
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -220,8 +229,11 @@ export default function ContactContent() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-bold text-foreground mb-1">Company</label>
+                        <label htmlFor="contact-company" className="block text-sm font-bold text-foreground mb-1">
+                          Company
+                        </label>
                         <input
+                          id="contact-company"
                           type="text"
                           value={formData.company}
                           onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -231,8 +243,11 @@ export default function ContactContent() {
                       </div>
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-foreground mb-1">Service Interested In</label>
+                      <label htmlFor="contact-service" className="block text-sm font-bold text-foreground mb-1">
+                        Service Interested In
+                      </label>
                       <select
+                        id="contact-service"
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="w-full px-4 py-3 rounded-xl border border-background/20 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-foreground bg-background"
@@ -244,8 +259,11 @@ export default function ContactContent() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-foreground mb-1">Message</label>
+                      <label htmlFor="contact-message" className="block text-sm font-bold text-foreground mb-1">
+                        Message
+                      </label>
                       <textarea
+                        id="contact-message"
                         required
                         rows={4}
                         value={formData.message}

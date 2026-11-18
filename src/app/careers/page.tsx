@@ -1,4 +1,4 @@
-import CareersContent from "@/components/CareersContent";
+import CareersContent from "@/components/careers-content/page";
 
 export const metadata = {
   title: "Careers",

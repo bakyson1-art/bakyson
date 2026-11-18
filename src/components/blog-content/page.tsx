@@ -7,6 +7,10 @@ import { Calendar, Clock, User, Tag, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { motionTokens, springs } from "@/lib/motion-tokens";
+import { useSafeMotion } from "@/hooks/use-reduced-motion";
+import { useState } from "react";
 
 const posts = [
   {
@@ -73,6 +77,45 @@ const containerVariants = {
 };
 
 export default function BlogContent() {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const safeMotion = useSafeMotion(motionTokens.distance.md);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsletterSubmitting(true);
+    setNewsletterError("");
+
+    if (!newsletterEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newsletterEmail)) {
+      setNewsletterError("Please enter a valid email address");
+      setNewsletterSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setNewsletterSubmitted(true);
+        setNewsletterEmail("");
+      } else {
+        setNewsletterError(data.error || "Failed to subscribe");
+      }
+    } catch {
+      setNewsletterError("Failed to subscribe. Please try again.");
+    } finally {
+      setNewsletterSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-background text-foreground">
       {/* Hero Section */}
@@ -190,24 +233,64 @@ export default function BlogContent() {
             >
               Get the latest ICT insights, project updates, and industry news delivered to your inbox.
             </motion.p>
-            <motion.form
-              variants={itemVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-xl border border-background/30 text-foreground focus:ring-2 focus:ring-primary focus:border-primary outline-none"
-              />
-              <button type="button" className="bg-background text-primary px-8 py-4 rounded-xl font-bold hover:bg-background/90 hover:text-primary transition-all">
-                Subscribe
-              </button>
-            </motion.form>
+            {newsletterSubmitted ? (
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                className="text-center"
+              >
+                <div className="w-16 h-16 rounded-full bg-background/20 flex items-center justify-center text-background mx-auto mb-4">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <motion.h3 className="text-xl font-bold text-background mb-2">
+                  Subscribed!
+                </motion.h3>
+                <motion.p className="text-background/80">
+                  You'll now receive our latest insights and updates.
+                </motion.p>
+              </motion.div>
+            ) : (
+              <motion.form
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"
+                onSubmit={handleNewsletterSubmit}
+              >
+                <div className="flex-1 relative">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={newsletterEmail}
+                    onChange={(e) => {
+                      setNewsletterEmail(e.target.value);
+                      setNewsletterError("");
+                    }}
+                    className="flex-1 px-6 py-4 rounded-xl border border-background/30 text-foreground focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-background/50"
+                    disabled={newsletterSubmitting}
+                    aria-describedby={newsletterError ? "newsletter-error" : undefined}
+                    aria-invalid={!!newsletterError}
+                  />
+                  {newsletterError && (
+                    <span id="newsletter-error" className="absolute bottom-[-20px] left-0 text-sm text-destructive" role="alert">
+                      {newsletterError}
+                    </span>
+                  )}
+                </div>
+                <Button
+                  type="submit"
+                  disabled={newsletterSubmitting}
+                  className="bg-background text-primary hover:bg-background/90 hover:text-primary transition-all px-8 py-4"
+                  whileTap={{ scale: motionTokens.scale.press }}
+                  transition={springs.snappy}
+                >
+                  {newsletterSubmitting ? "Subscribing..." : "Subscribe"}
+                </Button>
+              </motion.form>
+            )}
           </div>
         </div>
       </section>

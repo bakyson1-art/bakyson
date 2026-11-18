@@ -7,17 +7,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/services",
+    "/industry",
     "/portfolio",
     "/case-studies",
     "/blog",
     "/careers",
     "/contact",
+    "/terms-of-use",
+    "/cookie-policy",
+    "/privacy-policy",
     "/portal/login",
+    "/portal/dashboard",
+    "/portal/2fa",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
-    changeFrequency: route === "" ? "daily" : "weekly",
-    priority: route === "" ? 1 : 0.8,
+    changeFrequency:
+      route === "" || route.startsWith("/portal") ? "weekly" : "weekly",
+    priority:
+      route === ""
+        ? 1
+        : route.startsWith("/portal")
+          ? 0.3
+          : 0.8,
   }));
 
   const caseStudyRoutes = [

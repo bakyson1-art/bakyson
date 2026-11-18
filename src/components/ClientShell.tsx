@@ -54,10 +54,25 @@ function Navbar({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="size-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold shadow-lg shadow-primary">
-              B
-            </div>
+          <Link href="/" className="flex items-center gap-2" aria-label="Bakyson Home">
+            <svg
+              className="size-10 text-primary-foreground"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Bakyson logo"
+            >
+              <rect width="24" height="24" fill="currentColor" rx="4" />
+              <path
+                d="M8 8L8 16L12 16L12 8"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
             <span className="font-heading font-extrabold text-xl tracking-tight text-foreground italic">
               Bakyson
             </span>

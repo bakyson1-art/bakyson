@@ -140,8 +140,11 @@ export default function DashboardContent() {
                 </div>
               </div>
               <button
-                onClick={() => (window.location.href = "/portal/login")}
-                className="ml-4 text-sm font-bold text-bakyson-orange hover:text-bakyson-orange-dark transition-colors flex items-center gap-1"
+                onClick={async () => {
+                  await fetch("/api/auth/signout", { method: "POST" });
+                  window.location.href = "/portal/login";
+                }}
+                className="ml-4 text-sm font-bold text-primary hover:text-primary-foreground transition-colors flex items-center gap-1 bg-background border border-border px-3 py-1.5 rounded-lg hover:bg-accent"
               >
                 Sign Out <LogOut className="w-4 h-4" />
               </button>
