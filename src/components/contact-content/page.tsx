@@ -343,7 +343,7 @@ export default function ContactContent() {
                       type="submit"
                       disabled={submitting}
                       className="w-full bg-primary text-background py-4 rounded-xl font-bold text-lg hover:bg-primary-hover transition-all disabled:opacity-50 shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
-                      whileTap={{ scale: 0.97 }}
+                      whileTap={{ scale: motionTokens.scale.press }}
                       transition={springs.snappy}
                     >
                       {submitting ? "Sending..." : "Send Message"}
