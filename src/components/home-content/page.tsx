@@ -3,14 +3,113 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { MapPin, ShieldCheck, ArrowRight } from "lucide-react";
+import { MapPin, ShieldCheck, ArrowRight, Play, Layers, Users, Award, MapPin as MapPinIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { motionTokens, springs } from "@/lib/motion-tokens";
 import { useSafeMotion } from "@/hooks/use-reduced-motion";
 
+const services = [
+  {
+    title: "Infotainment & IPTV",
+    subtitle: "Guest entertainment systems",
+    description: "Interactive IPTV and digital signage solutions that transform guest experiences in hotels and public spaces.",
+    icon: Play,
+    features: [
+      "Interactive TV & casting",
+      "Digital signage management",
+      "Content delivery networks",
+      "Guest device integration",
+      "Analytics & reporting",
+    ],
+  },
+  {
+    title: "Network & Communication",
+    subtitle: "Connectivity infrastructure",
+    description: "HSIA, structured cabling, IP telephony, and network infrastructure for seamless connectivity across campuses.",
+    icon: Layers,
+    features: [
+      "High-speed internet (HSIA)",
+      "Structured cabling (Cat6a/Fiber)",
+      "IP telephony & PBX",
+      "Wi-Fi 6/6E deployment",
+      "Network monitoring & NOC",
+    ],
+  },
+  {
+    title: "Safety & Security",
+    subtitle: "Protection systems",
+    description: "Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.",
+    icon: ShieldCheck,
+    features: [
+      "Access control & biometrics",
+      "CCTV & video analytics",
+      "Fire detection & evacuation",
+      "Voice alarm systems",
+      "Perimeter intrusion detection",
+    ],
+  },
+  {
+    title: "Audio Visual",
+    subtitle: "Meeting & event tech",
+    description: "Meeting room solutions, video walls, BGM, displays, and projectors for corporate and event spaces.",
+    icon: Users,
+    features: [
+      "Video conferencing rooms",
+      "LED video walls & displays",
+      "Professional sound systems",
+      "Digital signage & wayfinding",
+      "Control systems & automation",
+    ],
+  },
+  {
+    title: "Green Solutions",
+    subtitle: "Energy efficiency",
+    description: "BMS, GRMS, and home automation systems that drive energy efficiency and smart building operations.",
+    icon: Award,
+    features: [
+      "Building management (BMS)",
+      "Guest room management (GRMS)",
+      "Energy monitoring & optimization",
+      "IoT sensor networks",
+      "Sustainability reporting",
+    ],
+  },
+  {
+    title: "Back of House",
+    subtitle: "IT hardware & ops",
+    description: "Servers, laptops, computers, printers, and IT hardware to power your operations behind the scenes.",
+    icon: MapPinIcon,
+    features: [
+      "Server & storage solutions",
+      "Endpoint devices (laptops/PCs)",
+      "Print & document management",
+      "IT asset management",
+      "Helpdesk & support services",
+    ],
+  },
+];
+
 export default function HomeContent() {
   const safeMotion = useSafeMotion(motionTokens.distance.md);
+
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 32 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+    },
+  };
 
   return (
     <div className="bg-background text-foreground">
@@ -136,6 +235,73 @@ export default function HomeContent() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section
+        className="py-24 bg-foreground border-y border-border"
+        aria-labelledby="services-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <Badge variant="primary" className="inline-block mb-4">
+              Our Services
+            </Badge>
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-foreground mb-6" id="services-heading">
+              Powering Africa&apos;s Smart Buildings
+            </h2>
+            <p className="text-lg text-foreground-muted max-w-2xl mx-auto leading-relaxed">
+              Comprehensive ELV systems integration across six solution families,
+              tailored to your industry and scale.
+            </p>
+          </div>
+
+          <motion.ul
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0"
+          >
+            {services.map((service) => (
+              <motion.li
+                key={service.title}
+                variants={itemVariants}
+                whileHover={{ y: -8 }}
+                transition={springs.gentle}
+              >
+                <Card variant="hover">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary transition-colors">
+                      <service.icon className="w-6 h-6" />
+                    </div>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                      {service.title}
+                    </CardTitle>
+                    <p className="text-foreground-muted text-sm font-medium">{service.subtitle}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-foreground-muted text-sm leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground-muted">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1 shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter>
+                    <Link href="/services" className="text-sm font-bold text-primary flex items-center gap-1 hover:text-primary-hover transition-colors">
+                      Learn more <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </motion.li>
+            ))}
+          </motion.ul>
         </div>
       </section>
     </div>
