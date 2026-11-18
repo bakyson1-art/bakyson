@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { motion } from "motion/react";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const projects = [
   {
@@ -274,9 +275,9 @@ export default function DashboardContent() {
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="mb-8">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold text-foreground">My Projects</h2>
-              <button className="flex items-center gap-2 text-primary font-bold hover:text-primary-hover transition-colors">
+              <Button variant="outline" size="sm" className="text-primary hover:bg-background hover:text-primary" whileTap={{ scale: motionTokens.scale.press }} transition={springs.snappy}>
                 <Plus className="w-4 h-4" /> New Request
-              </button>
+              </Button>
             </div>
             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid md:grid-cols-3 gap-6">
               {projects.map((project) => (
