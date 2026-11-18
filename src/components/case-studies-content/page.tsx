@@ -7,6 +7,7 @@ import { ArrowRight, MapPin, Clock, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const caseStudies = [
   {
@@ -153,12 +154,13 @@ export default function CaseStudiesContent() {
       {/* Case Studies Listing */}
       <section className="py-20 bg-surface" aria-labelledby="case-studies-grid-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid lg:grid-cols-3 gap-8">
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {caseStudies.map((study) => (
               <motion.div
                 key={study.id}
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -motionTokens.distance.md }}
+                transition={springs.gentle}
                 className="group cursor-pointer"
               >
                 <Card variant="hover" className="relative rounded-2xl overflow-hidden bg-background border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300">

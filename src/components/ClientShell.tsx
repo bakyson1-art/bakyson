@@ -15,7 +15,6 @@ const NAV_LINKS = [
   { name: "Blog", href: "/blog" },
   { name: "Careers", href: "/careers" },
   { name: "Contact", href: "/contact" },
-  { name: "Client Portal", href: "/portal/login" },
 ];
 
 export default function ClientShell() {
@@ -135,11 +134,7 @@ function Navbar({
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-sm font-medium transition-colors ${
-                  link.name === "Client Portal"
-                    ? "text-primary font-bold bg-primary/10"
-                    : "text-foreground/70 hover:bg-surface-hover hover:text-primary"
-                }`}
+                className="block px-4 py-3 text-sm font-medium transition-colors text-foreground/70 hover:bg-surface-hover hover:text-primary"
               >
                 {link.name}
               </Link>

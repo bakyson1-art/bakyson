@@ -67,16 +67,15 @@ const serviceLinks = [
   "Safety & Security",
   "Audio Visual",
   "Green Solutions",
-  "Back of House",
 ];
 
 const industryLinks = [
   "Hotels",
   "Hospitals",
-  "Mining Camps",
-  "Schools",
   "Corporates",
+  "Learning Institutions",
   "Events & Stadia",
+  "Telcos & ISPs",
 ];
 
 const legalLinks = [

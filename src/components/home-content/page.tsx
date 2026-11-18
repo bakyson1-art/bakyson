@@ -3,52 +3,97 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { MapPin, ShieldCheck, ArrowRight, Play, Layers, ShieldCheck as ShieldIcon, Users, Layers as LayersIcon, Award, MapPin as MapPinIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Play, MapPin, ShieldCheck, Users, Layers, Award } from "lucide-react";
+import { motionTokens, springs } from "@/lib/motion-tokens";
+import { useSafeMotion } from "@/hooks/use-reduced-motion";
 
 const services = [
   {
     title: "Infotainment & IPTV",
-    description:
-      "Interactive IPTV and digital signage solutions that transform guest experiences in hotels and public spaces.",
+    subtitle: "Guest entertainment systems",
+    description: "Interactive IPTV and digital signage solutions that transform guest experiences in hotels and public spaces.",
     icon: Play,
+    features: [
+      "Interactive TV & casting",
+      "Digital signage management",
+      "Content delivery networks",
+      "Guest device integration",
+      "Analytics & reporting",
+    ],
   },
   {
     title: "Network & Communication",
-    description:
-      "HSIA, structured cabling, IP telephony, and network infrastructure for seamless connectivity across campuses.",
+    subtitle: "Connectivity infrastructure",
+    description: "HSIA, structured cabling, IP telephony, and network infrastructure for seamless connectivity across campuses.",
     icon: Layers,
+    features: [
+      "High-speed internet (HSIA)",
+      "Structured cabling (Cat6a/Fiber)",
+      "IP telephony & PBX",
+      "Wi-Fi 6/6E deployment",
+      "Network monitoring & NOC",
+    ],
   },
   {
     title: "Safety & Security",
-    description:
-      "Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.",
-    icon: ShieldCheck,
+    subtitle: "Protection systems",
+    description: "Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.",
+    icon: ShieldIcon,
+    features: [
+      "Access control & biometrics",
+      "CCTV & video analytics",
+      "Fire detection & evacuation",
+      "Voice alarm systems",
+      "Perimeter intrusion detection",
+    ],
   },
   {
     title: "Audio Visual",
-    description:
-      "Meeting room solutions, video walls, BGM, displays, and projectors for corporate and event spaces.",
+    subtitle: "Meeting & event tech",
+    description: "Meeting room solutions, video walls, BGM, displays, and projectors for corporate and event spaces.",
     icon: Users,
+    features: [
+      "Video conferencing rooms",
+      "LED video walls & displays",
+      "Professional sound systems",
+      "Digital signage & wayfinding",
+      "Control systems & automation",
+    ],
   },
   {
     title: "Green Solutions",
-    description:
-      "BMS, GRMS, and home automation systems that drive energy efficiency and smart building operations.",
+    subtitle: "Energy efficiency",
+    description: "BMS, GRMS, and home automation systems that drive energy efficiency and smart building operations.",
     icon: Award,
+    features: [
+      "Building management (BMS)",
+      "Guest room management (GRMS)",
+      "Energy monitoring & optimization",
+      "IoT sensor networks",
+      "Sustainability reporting",
+    ],
   },
   {
     title: "Back of House",
-    description:
-      "Servers, laptops, computers, printers, and IT hardware to power your operations behind the scenes.",
-    icon: MapPin,
+    subtitle: "IT hardware & ops",
+    description: "Servers, laptops, computers, printers, and IT hardware to power your operations behind the scenes.",
+    icon: MapPinIcon,
+    features: [
+      "Server & storage solutions",
+      "Endpoint devices (laptops/PCs)",
+      "Print & document management",
+      "IT asset management",
+      "Helpdesk & support services",
+    ],
   },
 ];
 
 const caseStudies = [
   {
+    slug: "jw-marriott-nairobi",
     title: "JW Marriott Nairobi",
     location: "Nairobi, Kenya",
     sector: "Hospitality",
@@ -56,6 +101,7 @@ const caseStudies = [
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
   },
   {
+    slug: "aga-khan-kisumu",
     title: "Aga Khan University Hospital Kisumu",
     location: "Kisumu, Kenya",
     sector: "Healthcare",
@@ -63,6 +109,7 @@ const caseStudies = [
     image: "https://images.unsplash.com/photo-1551082805-c58d867987ab?w=800&q=80",
   },
   {
+    slug: "african-reagent-accra",
     title: "African Reagent Accra",
     location: "Accra, Ghana",
     sector: "Corporate",
@@ -70,12 +117,20 @@ const caseStudies = [
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
   },
   {
+    slug: "hilton-accra-cantonments",
     title: "Hilton Accra Cantonments",
     location: "Accra, Ghana",
     sector: "Hospitality",
     solution: "Audio Visual & Meeting Rooms",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?w=800&q=80",
   },
+];
+
+const portfolioProjects = [
+  { code: "NG", name: "Nigeria", count: 3, cities: ["Lagos", "Abuja", "Port Harcourt"] },
+  { code: "KE", name: "Kenya", count: 3, cities: ["Nairobi", "Kisumu", "Mombasa"] },
+  { code: "ZA", name: "South Africa", count: 2, cities: ["Johannesburg", "Cape Town"] },
+  { code: "GH", name: "Ghana", count: 2, cities: ["Accra", "Kumasi"] },
 ];
 
 const sectionVariants = {
@@ -96,8 +151,19 @@ const containerVariants = {
 };
 
 export default function HomeContent() {
+  const safeMotion = useSafeMotion(motionTokens.distance.md);
+
   return (
     <div className="bg-background text-foreground">
+      {/* Skip Link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-background focus:text-foreground focus:rounded-md focus:font-bold"
+      >
+        Skip to main content
+      </a>
+
+      {/* Hero Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -130,6 +196,8 @@ export default function HomeContent() {
                   variant="primary"
                   size="lg"
                   className="w-full sm:w-auto shadow-lg shadow-primary hover:shadow-primary"
+                  whileTap={{ scale: 0.97 }}
+                  transition={springs.snappy}
                 >
                   <Link href="/services">
                     Explore Services <ArrowRight className="w-5 h-5" />
@@ -140,6 +208,8 @@ export default function HomeContent() {
                   variant="outline"
                   size="lg"
                   className="w-full sm:w-auto shadow-lg"
+                  whileTap={{ scale: 0.97 }}
+                  transition={springs.snappy}
                 >
                   <Link href="/portal/login">Client Portal</Link>
                 </Button>
@@ -180,6 +250,7 @@ export default function HomeContent() {
         </div>
       </motion.section>
 
+      {/* Services Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -193,7 +264,7 @@ export default function HomeContent() {
               Our Services
             </Badge>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2" id="services-heading">
-              Powering Africa's Smart Buildings
+              Powering Africa&apos;s Smart Buildings
             </h2>
             <p className="text-foreground-muted mt-4 max-w-2xl mx-auto">
               Comprehensive ELV systems integration across six solution families,
@@ -205,14 +276,14 @@ export default function HomeContent() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid md:grid-cols-3 gap-6 list-none p-0 m-0"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0"
           >
             {services.map((service) => (
               <motion.li
                 key={service.title}
                 variants={itemVariants}
                 whileHover={{ y: -4 }}
-                className="group cursor-pointer"
+                transition={springs.gentle}
               >
                 <Card variant="hover">
                   <CardHeader>
@@ -222,11 +293,20 @@ export default function HomeContent() {
                     <CardTitle className="text-xl group-hover:text-primary transition-colors">
                       {service.title}
                     </CardTitle>
+                    <p className="text-foreground-muted text-sm font-medium">{service.subtitle}</p>
                   </CardHeader>
                   <CardContent>
                     <p className="text-foreground-muted text-sm leading-relaxed mb-4">
                       {service.description}
                     </p>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, i) => (
+                        <li key={i} className="flex items-center gap-2 text-sm text-foreground-muted">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                   <CardFooter>
                     <Link href="/services" className="text-sm font-bold text-primary flex items-center gap-1 hover:text-primary-hover transition-colors">
@@ -240,6 +320,7 @@ export default function HomeContent() {
         </div>
       </motion.section>
 
+      {/* About Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -268,13 +349,13 @@ export default function HomeContent() {
                 Africa, we serve diverse industry verticals across the continent,
                 building lasting partnerships that drive success.
               </p>
-              <div className="flex items-center gap-4">
-                <div className="h-1 w-1 bg-primary rounded-full" />
-                <span className="font-bold text-foreground">Innovation</span>
-              </div>
-              <div className="flex items-center gap-4 mt-2">
-                <div className="h-1 w-1 bg-primary rounded-full" />
-                <span className="font-bold text-foreground">Experience</span>
+              <div className="flex flex-wrap gap-3 mb-8">
+                {["Innovation", "Experience", "Knowledge", "Commitment", "Coverage"].map((tag) => (
+                  <Badge key={tag} variant="outline" className="gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    {tag}
+                  </Badge>
+                ))}
               </div>
             </div>
             <div className="relative hidden lg:block">
@@ -300,6 +381,7 @@ export default function HomeContent() {
         </div>
       </motion.section>
 
+      {/* Case Studies Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -329,14 +411,14 @@ export default function HomeContent() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0"
           >
             {caseStudies.map((study) => (
               <motion.li
-                key={study.title}
+                key={study.slug}
                 variants={itemVariants}
                 whileHover={{ y: -4 }}
-                className="group cursor-pointer"
+                transition={springs.gentle}
               >
                 <Card variant="hover">
                   <div className="relative h-48 overflow-hidden">
@@ -360,7 +442,7 @@ export default function HomeContent() {
                         {study.solution}
                       </span>
                       <Link
-                        href={`/case-studies/${study.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        href={`/case-studies/${study.slug}`}
                         className="text-xs font-bold text-foreground hover:text-primary transition-colors"
                       >
                         Read story
@@ -374,6 +456,7 @@ export default function HomeContent() {
         </div>
       </motion.section>
 
+      {/* Portfolio Map Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -387,7 +470,7 @@ export default function HomeContent() {
               Our Portfolio
             </Badge>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2 mb-6" id="portfolio-heading">
-              Where We've Built Across Africa
+              Where We&apos;ve Built Across Africa
             </h2>
             <p className="text-foreground/60 text-lg max-w-2xl mx-auto leading-relaxed">
               Explore our project locations on the interactive map below. From
@@ -395,45 +478,125 @@ export default function HomeContent() {
             </p>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-background aspect-video min-h-[400px]">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-foreground/5" />
-            <div className="absolute inset-0 flex items-center justify-center opacity-30">
-              <svg className="w-32 h-32 text-foreground/10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
-              <div className="bg-background p-4 rounded-xl shadow-lg border border-border">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span className="text-sm font-bold text-foreground">12 Active Projects</span>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Map Visualization */}
+            <div className="lg:col-span-2">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-background aspect-video min-h-[400px]">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-foreground/5" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                  <svg className="w-32 h-32 text-foreground/10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
                 </div>
-                <div className="flex gap-2">
-                  {["NG", "KE", "ZA", "GH"].map((code) => (
-                    <span key={code} className="px-2 py-1 rounded bg-foreground text-foreground-inverse text-xs font-bold">
-                      {code}
-                    </span>
-                  ))}
+                {/* Country markers on map */}
+                <div className="relative h-full w-full">
+                  {/* Nigeria */}
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="absolute top-1/4 left-1/5 w-3 h-3 rounded-full bg-primary border-4 border-background shadow-lg"
+                    style={{ top: '25%', left: '20%' }}
+                    aria-label="Nigeria projects"
+                  >
+                    <span className="sr-only">Nigeria: 3 projects</span>
+                  </motion.button>
+                  {/* Kenya */}
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="absolute top-1/3 left-3/5 w-3 h-3 rounded-full bg-primary border-4 border-background shadow-lg"
+                    style={{ top: '33%', left: '60%' }}
+                    aria-label="Kenya projects"
+                  >
+                    <span className="sr-only">Kenya: 3 projects</span>
+                  </motion.button>
+                  {/* South Africa */}
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="absolute bottom-1/4 left-1/3 w-3 h-3 rounded-full bg-primary border-4 border-background shadow-lg"
+                    style={{ top: '75%', left: '33%' }}
+                    aria-label="South Africa projects"
+                  >
+                    <span className="sr-only">South Africa: 2 projects</span>
+                  </motion.button>
+                  {/* Ghana */}
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="absolute top-1/2 left-1/3 w-3 h-3 rounded-full bg-primary border-4 border-background shadow-lg"
+                    style={{ top: '50%', left: '33%' }}
+                    aria-label="Ghana projects"
+                  >
+                    <span className="sr-only">Ghana: 2 projects</span>
+                  </motion.button>
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+                  <div className="bg-background p-4 rounded-xl shadow-lg border border-border">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                      <span className="text-sm font-bold text-foreground">12 Active Projects</span>
+                    </div>
+                    <div className="flex gap-2">
+                      {portfolioProjects.map((project) => (
+                        <span key={project.code} className="px-2 py-1 rounded bg-foreground text-foreground-inverse text-xs font-bold">
+                          {project.code}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <Link
+                    href="/portfolio"
+                    className="bg-foreground text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-foreground-inverse transition-colors shadow-xl text-center"
+                  >
+                    View Full Portfolio
+                  </Link>
                 </div>
               </div>
-              <Link
-                href="/portfolio"
-                className="bg-foreground text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-foreground-inverse transition-colors shadow-xl"
-              >
-                View Full Portfolio
-              </Link>
+            </div>
+
+            {/* Country Presence Panel */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold text-foreground">Country Presence</h3>
+              <div className="space-y-4">
+                {portfolioProjects.map((project) => (
+                  <motion.div
+                    key={project.code}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="bg-surface p-4 rounded-xl border border-border hover:border-primary/50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider">
+                          {project.code}
+                        </span>
+                        <span className="font-bold text-foreground">{project.name}</span>
+                      </div>
+                      <Badge variant="primary" className="text-xs">
+                        {project.count} Projects
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-foreground-muted">
+                      {project.cities.join(", ")}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </motion.section>
 
+      {/* CTA Section */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
         animate="visible"
         className="py-20 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80')] bg-cover bg-center opacity-20" />
+        <div className="absolute inset-0 bg-foreground border-4 border-primary" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-foreground rounded-2xl p-8 lg:p-12 shadow-2xl border border-primary/30 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
@@ -443,7 +606,7 @@ export default function HomeContent() {
               </h2>
               <p className="text-foreground-muted text-lg max-w-xl md:max-w-none">
                 Get a free consultation and custom quote for your ICT project.
-                We'll design, build, and support your solution end to end.
+                We&apos;ll design, build, and support your solution end to end.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Button
@@ -451,6 +614,8 @@ export default function HomeContent() {
                   variant="primary"
                   size="lg"
                   className="w-full sm:w-auto shadow-lg shadow-primary hover:shadow-primary"
+                  whileTap={{ scale: 0.97 }}
+                  transition={springs.snappy}
                 >
                   <Link href="/contact">Get a Free Quote <ArrowRight className="w-5 h-5" /></Link>
                 </Button>
@@ -459,6 +624,8 @@ export default function HomeContent() {
                   variant="outline"
                   size="lg"
                   className="w-full sm:w-auto shadow-lg"
+                  whileTap={{ scale: 0.97 }}
+                  transition={springs.snappy}
                 >
                   <Link href="/portal/login">Client Portal</Link>
                 </Button>

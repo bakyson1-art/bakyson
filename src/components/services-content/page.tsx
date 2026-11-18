@@ -7,6 +7,7 @@ import { ChevronRight, Play, Layers, ShieldCheck, Users, Award, MapPin, ArrowRig
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const serviceCategories = [
   {
@@ -165,53 +166,55 @@ export default function ServicesContent() {
       {/* Services Section */}
       <section className="py-20 bg-surface" aria-labelledby="explore-services-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row justify-between items-end gap-6 mb-12">
-            <div className="space-y-2">
-              <motion.h2 variants={sectionVariants} initial="hidden" animate="visible" className="text-3xl font-bold text-foreground">
-                Explore Our Solution Families
-              </motion.h2>
-              <motion.p variants={sectionVariants} initial="hidden" animate="visible" className="text-foreground/60 mt-2">
-                Click on any service to learn more about what we offer.
-              </motion.p>
-            </div>
-            <Link href="/contact" className="inline-flex items-center gap-2">
-              <Button variant="primary" size="sm" className="shadow-lg shadow-primary hover:shadow-primary">
-                Request a Quote <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
+          <div className="text-center mb-16">
+            <Badge variant="primary" className="inline-block mb-4">
+              Our Services
+            </Badge>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mt-2" id="explore-services-heading">
+              Powering Africa&apos;s Smart Buildings
+            </h2>
+            <p className="text-foreground-muted mt-4 max-w-2xl mx-auto">
+              Comprehensive ELV systems integration across six solution families,
+              tailored to your industry and scale.
+            </p>
           </div>
 
-          <motion.ul variants={containerVariants} initial="hidden" animate="visible" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0">
+          <motion.ul variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0">
             {serviceCategories.map((svc) => (
               <motion.li
                 key={svc.id}
                 variants={itemVariants}
                 whileHover={{ y: -4 }}
-                className="group cursor-pointer"
+                transition={springs.gentle}
               >
-                <Card variant="hover" className="p-8 relative cursor-pointer">
-                  <div className="absolute top-6 right-6 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary transition-colors">
-                    <svc.icon className="w-6 h-6" />
-                  </div>
-                  <div className="relative z-10">
-                    <CardTitle className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <Card variant="hover">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary transition-colors">
+                      <svc.icon className="w-6 h-6" />
+                    </div>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
                       {svc.title}
                     </CardTitle>
-                    <p className="text-sm font-medium text-primary mb-4 uppercase tracking-wider">
-                      {svc.subtitle}
-                    </p>
-                    <p className="text-foreground/70 text-sm leading-relaxed mb-6">
+                    <p className="text-foreground-muted text-sm font-medium">{svc.subtitle}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-foreground-muted text-sm leading-relaxed mb-4">
                       {svc.description}
                     </p>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 mb-6">
                       {svc.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-foreground/70">
-                          <ChevronRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground-muted">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                           {feature}
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Link href="/services" className="text-sm font-bold text-primary flex items-center gap-1 hover:text-primary-hover transition-colors">
+                      Learn more <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </CardFooter>
                 </Card>
               </motion.li>
             ))}
