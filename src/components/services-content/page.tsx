@@ -265,7 +265,7 @@ export default function ServicesContent() {
               with pricing and timeline.
             </p>
             <Link href="/contact" className="inline-flex items-center gap-2">
-              <Button variant="outline" size="lg" className="text-primary hover:bg-background hover:text-primary">
+              <Button variant="outline" size="lg" className="text-primary hover:bg-background hover:text-primary" whileTap={{ scale: motionTokens.scale.press }} transition={springs.snappy}>
                 Contact Sales <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
