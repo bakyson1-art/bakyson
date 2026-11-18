@@ -304,6 +304,91 @@ export default function HomeContent() {
           </motion.ul>
         </div>
       </section>
+
+      {/* About Section */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+        className="py-24 bg-background"
+        aria-labelledby="about-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <Badge variant="primary" className="inline-block mb-4">
+                About Bakyson
+              </Badge>
+              <h2 className="text-4xl lg:text-5xl font-extrabold text-foreground mb-6" id="about-heading">
+                Designing and Building ELV Solutions for Sub-Saharan Africa
+              </h2>
+              <p className="text-lg text-foreground/70 leading-relaxed mb-8">
+                Bakyson is a Design and Build ELV services provider with a core focus on Hospitality,
+                Healthcare, Corporates, and Learning Institutions. We deliver affordable, cutting-edge,
+                and viable ICT solutions that transform how businesses operate and how people experience
+                technology.
+              </p>
+              <p className="text-lg text-foreground/70 leading-relaxed mb-8">
+                With strategic operational hubs in Nigeria, Kenya, and South Africa, we serve diverse
+                industry verticals across the continent, building lasting partnerships that drive success.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {["Innovation", "Experience", "Knowledge", "Commitment", "Coverage"].map((tag) => (
+                  <Badge key={tag} variant="outline" className="gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            <div className="relative hidden lg:block">
+              <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-background">
+                <Image
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80"
+                  alt="Network infrastructure and server room"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-foreground/40" />
+                <div className="absolute bottom-6 left-6 text-foreground-inverse">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider">
+                    Sub-Saharan Africa
+                  </span>
+                  <h3 className="mt-2 text-xl font-bold text-foreground-inverse">Strategic Coverage</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Stats Section */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        animate="visible"
+        className="py-24 bg-foreground border-y border-border"
+        aria-labelledby="stats-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border pt-12">
+            {[ "15+", "500+", "3", "24/7" ].map((stat) => (
+              <motion.div
+                key={stat}
+                variants={itemVariants}
+                className="text-center"
+              >
+                <div className="text-4xl font-bold text-primary mb-2">{stat}</div>
+                <div className="text-sm text-foreground-muted uppercase tracking-wider">
+                  {stat === "15+" ? "Countries Served" : stat === "500+" ? "Projects Delivered" : stat === "3" ? "Regional Hubs" : "Support Available"}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
     </div>
   );
 }

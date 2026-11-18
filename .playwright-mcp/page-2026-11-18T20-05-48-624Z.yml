@@ -1,0 +1,233 @@
+- generic [active] [ref=f11e1]:
+  - link "Skip to main content" [ref=f11e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=f11e3]:
+    - generic [ref=f11e5]:
+      - link "Bakyson Home" [ref=f11e6] [cursor=pointer]:
+        - /url: /
+        - img "Bakyson logo" [ref=f11e7]
+        - text: Bakyson
+      - generic [ref=f11e10]:
+        - link "Home" [ref=f11e11] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=f11e12] [cursor=pointer]:
+          - /url: /about
+        - link "Services" [ref=f11e13] [cursor=pointer]:
+          - /url: /services
+        - link "Portfolio" [ref=f11e14] [cursor=pointer]:
+          - /url: /portfolio
+        - link "Case Studies" [ref=f11e15] [cursor=pointer]:
+          - /url: /case-studies
+        - link "Blog" [ref=f11e16] [cursor=pointer]:
+          - /url: /blog
+        - link "Careers" [ref=f11e17] [cursor=pointer]:
+          - /url: /careers
+        - link "Contact" [ref=f11e18] [cursor=pointer]:
+          - /url: /contact
+        - link "Client Portal" [ref=f11e19] [cursor=pointer]:
+          - /url: /portal/login
+      - button "Open menu" [ref=f11e21]
+  - button "Open chat" [ref=f11e24]
+  - main [ref=f11e27]:
+    - generic [ref=f11e29]:
+      - link "Skip to main content" [ref=f11e30] [cursor=pointer]:
+        - /url: "#main-content"
+      - region "Reinvent Your Business with Cutting-Edge ICT Solutions" [ref=f11e31]:
+        - generic [ref=f11e33]:
+          - generic [ref=f11e34]:
+            - generic [ref=f11e35]: Now Serving 15+ Countries
+            - heading "Reinvent Your Business with Cutting-Edge ICT Solutions" [level=1] [ref=f11e37]
+            - paragraph [ref=f11e38]: Bakyson is a Design and Build ELV services provider delivering affordable, next-generation ICT systems for Hospitality, Healthcare, Corporates, and Learning Institutions across Nigeria, Kenya, South Africa, and beyond.
+            - generic [ref=f11e39]:
+              - link "Explore Services" [ref=f11e40] [cursor=pointer]:
+                - /url: /services
+              - link "Client Portal" [ref=f11e43] [cursor=pointer]:
+                - /url: /portal/login
+          - generic [ref=f11e44]:
+            - generic [ref=f11e45]:
+              - img "Modern hotel lobby with digital signage" [ref=f11e46]
+              - generic [ref=f11e47]:
+                - generic [ref=f11e48]: JW Marriott, Nairobi
+                - heading "Interactive IPTV Deployment" [level=3] [ref=f11e52]
+            - generic [ref=f11e59]:
+              - paragraph [ref=f11e60]: 99.9%
+              - paragraph [ref=f11e61]: System Uptime SLA
+      - region "Powering Africa's Smart Buildings" [ref=f11e62]:
+        - generic [ref=f11e63]:
+          - generic [ref=f11e64]:
+            - generic [ref=f11e65]: Our Services
+            - heading "Powering Africa's Smart Buildings" [level=2] [ref=f11e66]
+            - paragraph [ref=f11e67]: Comprehensive ELV systems integration across six solution families, tailored to your industry and scale.
+          - list [ref=f11e68]:
+            - listitem [ref=f11e69]:
+              - generic [ref=f11e70]:
+                - generic [ref=f11e71]:
+                  - heading "Infotainment & IPTV" [level=3] [ref=f11e75]
+                  - paragraph [ref=f11e76]: Guest entertainment systems
+                - generic [ref=f11e77]:
+                  - paragraph [ref=f11e78]: Interactive IPTV and digital signage solutions that transform guest experiences in hotels and public spaces.
+                  - list [ref=f11e79]:
+                    - listitem [ref=f11e80]: Interactive TV & casting
+                    - listitem [ref=f11e81]: Digital signage management
+                    - listitem [ref=f11e82]: Content delivery networks
+                    - listitem [ref=f11e83]: Guest device integration
+                    - listitem [ref=f11e84]: Analytics & reporting
+                - link "Learn more" [ref=f11e86] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f11e89]:
+              - generic [ref=f11e90]:
+                - generic [ref=f11e91]:
+                  - heading "Network & Communication" [level=3] [ref=f11e97]
+                  - paragraph [ref=f11e98]: Connectivity infrastructure
+                - generic [ref=f11e99]:
+                  - paragraph [ref=f11e100]: HSIA, structured cabling, IP telephony, and network infrastructure for seamless connectivity across campuses.
+                  - list [ref=f11e101]:
+                    - listitem [ref=f11e102]: High-speed internet (HSIA)
+                    - listitem [ref=f11e103]: Structured cabling (Cat6a/Fiber)
+                    - listitem [ref=f11e104]: IP telephony & PBX
+                    - listitem [ref=f11e105]: Wi-Fi 6/6E deployment
+                    - listitem [ref=f11e106]: Network monitoring & NOC
+                - link "Learn more" [ref=f11e108] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f11e111]:
+              - generic [ref=f11e112]:
+                - generic [ref=f11e113]:
+                  - heading "Safety & Security" [level=3] [ref=f11e118]
+                  - paragraph [ref=f11e119]: Protection systems
+                - generic [ref=f11e120]:
+                  - paragraph [ref=f11e121]: Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.
+                  - list [ref=f11e122]:
+                    - listitem [ref=f11e123]: Access control & biometrics
+                    - listitem [ref=f11e124]: CCTV & video analytics
+                    - listitem [ref=f11e125]: Fire detection & evacuation
+                    - listitem [ref=f11e126]: Voice alarm systems
+                    - listitem [ref=f11e127]: Perimeter intrusion detection
+                - link "Learn more" [ref=f11e129] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f11e132]:
+              - generic [ref=f11e133]:
+                - generic [ref=f11e134]:
+                  - heading "Audio Visual" [level=3] [ref=f11e141]
+                  - paragraph [ref=f11e142]: Meeting & event tech
+                - generic [ref=f11e143]:
+                  - paragraph [ref=f11e144]: Meeting room solutions, video walls, BGM, displays, and projectors for corporate and event spaces.
+                  - list [ref=f11e145]:
+                    - listitem [ref=f11e146]: Video conferencing rooms
+                    - listitem [ref=f11e147]: LED video walls & displays
+                    - listitem [ref=f11e148]: Professional sound systems
+                    - listitem [ref=f11e149]: Digital signage & wayfinding
+                    - listitem [ref=f11e150]: Control systems & automation
+                - link "Learn more" [ref=f11e152] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f11e155]:
+              - generic [ref=f11e156]:
+                - generic [ref=f11e157]:
+                  - heading "Green Solutions" [level=3] [ref=f11e162]
+                  - paragraph [ref=f11e163]: Energy efficiency
+                - generic [ref=f11e164]:
+                  - paragraph [ref=f11e165]: BMS, GRMS, and home automation systems that drive energy efficiency and smart building operations.
+                  - list [ref=f11e166]:
+                    - listitem [ref=f11e167]: Building management (BMS)
+                    - listitem [ref=f11e168]: Guest room management (GRMS)
+                    - listitem [ref=f11e169]: Energy monitoring & optimization
+                    - listitem [ref=f11e170]: IoT sensor networks
+                    - listitem [ref=f11e171]: Sustainability reporting
+                - link "Learn more" [ref=f11e173] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f11e176]:
+              - generic [ref=f11e177]:
+                - generic [ref=f11e178]:
+                  - heading "Back of House" [level=3] [ref=f11e183]
+                  - paragraph [ref=f11e184]: IT hardware & ops
+                - generic [ref=f11e185]:
+                  - paragraph [ref=f11e186]: Servers, laptops, computers, printers, and IT hardware to power your operations behind the scenes.
+                  - list [ref=f11e187]:
+                    - listitem [ref=f11e188]: Server & storage solutions
+                    - listitem [ref=f11e189]: Endpoint devices (laptops/PCs)
+                    - listitem [ref=f11e190]: Print & document management
+                    - listitem [ref=f11e191]: IT asset management
+                    - listitem [ref=f11e192]: Helpdesk & support services
+                - link "Learn more" [ref=f11e194] [cursor=pointer]:
+                  - /url: /services
+  - contentinfo [ref=f11e197]:
+    - generic [ref=f11e198]:
+      - generic [ref=f11e199]:
+        - generic [ref=f11e200]:
+          - generic [ref=f11e201]:
+            - generic [ref=f11e202]: B
+            - text: Bakyson
+          - paragraph [ref=f11e203]: Reinventing businesses across Sub-Saharan Africa with cutting-edge ICT solutions for Hospitality, Healthcare, Corporates, and Learning Institutions.
+          - generic [ref=f11e204]:
+            - link "Facebook" [ref=f11e205] [cursor=pointer]:
+              - /url: https://www.facebook.com/BakysonEnt
+            - link "Instagram" [ref=f11e208] [cursor=pointer]:
+              - /url: https://www.instagram.com/bakysonent/
+        - generic [ref=f11e211]:
+          - heading "Services" [level=3] [ref=f11e212]
+          - list [ref=f11e213]:
+            - listitem [ref=f11e214]:
+              - link "Infotainment & IPTV" [ref=f11e215] [cursor=pointer]:
+                - /url: /services#infotainment-iptv
+            - listitem [ref=f11e216]:
+              - link "Digital Signage" [ref=f11e217] [cursor=pointer]:
+                - /url: /services#digital-signage
+            - listitem [ref=f11e218]:
+              - link "Network & Communication" [ref=f11e219] [cursor=pointer]:
+                - /url: /services#network-communication
+            - listitem [ref=f11e220]:
+              - link "Safety & Security" [ref=f11e221] [cursor=pointer]:
+                - /url: /services#safety-security
+            - listitem [ref=f11e222]:
+              - link "Audio Visual" [ref=f11e223] [cursor=pointer]:
+                - /url: /services#audio-visual
+            - listitem [ref=f11e224]:
+              - link "Green Solutions" [ref=f11e225] [cursor=pointer]:
+                - /url: /services#green-solutions
+        - generic [ref=f11e226]:
+          - heading "Industries" [level=3] [ref=f11e227]
+          - list [ref=f11e228]:
+            - listitem [ref=f11e229]:
+              - link "Hotels" [ref=f11e230] [cursor=pointer]:
+                - /url: /industry#hotels
+            - listitem [ref=f11e231]:
+              - link "Hospitals" [ref=f11e232] [cursor=pointer]:
+                - /url: /industry#hospitals
+            - listitem [ref=f11e233]:
+              - link "Corporates" [ref=f11e234] [cursor=pointer]:
+                - /url: /industry#corporates
+            - listitem [ref=f11e235]:
+              - link "Learning Institutions" [ref=f11e236] [cursor=pointer]:
+                - /url: /industry#learning institutions
+            - listitem [ref=f11e237]:
+              - link "Events & Stadia" [ref=f11e238] [cursor=pointer]:
+                - /url: /industry#events & stadia
+            - listitem [ref=f11e239]:
+              - link "Telcos & ISPs" [ref=f11e240] [cursor=pointer]:
+                - /url: /industry#telcos & isps
+        - generic [ref=f11e241]:
+          - heading "Contact" [level=3] [ref=f11e242]
+          - list [ref=f11e243]:
+            - listitem [ref=f11e244]:
+              - generic [ref=f11e245]:
+                - generic [ref=f11e246]: +234 1 234 5678
+                - generic [ref=f11e249]: lagos@bakyson.com
+                - generic [ref=f11e252]: Mon–Fri, 9:00 AM – 5:00 PM WAT
+            - listitem [ref=f11e256]:
+              - generic [ref=f11e257]:
+                - generic [ref=f11e258]: +254 706 897 778
+                - generic [ref=f11e261]: nairobi@bakyson.com
+                - generic [ref=f11e264]: Mon–Fri, 8:00 AM – 6:00 PM EAT
+            - listitem [ref=f11e268]:
+              - generic [ref=f11e269]:
+                - generic [ref=f11e270]: +27 10 123 4567
+                - generic [ref=f11e273]: johannesburg@bakyson.com
+                - generic [ref=f11e276]: Mon–Fri, 8:30 AM – 5:30 PM SAST
+      - generic [ref=f11e280]:
+        - paragraph [ref=f11e281]: © 2026 Bakyson. All Rights Reserved.
+        - generic [ref=f11e282]:
+          - link "Terms of Use" [ref=f11e283] [cursor=pointer]:
+            - /url: /terms-of-use
+          - link "Cookie Policy" [ref=f11e284] [cursor=pointer]:
+            - /url: /cookie-policy
+          - link "Privacy Policy" [ref=f11e285] [cursor=pointer]:
+            - /url: /privacy-policy
