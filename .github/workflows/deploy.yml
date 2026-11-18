@@ -48,6 +48,6 @@ jobs:
         run: npm ci
 
       - name: Deploy to Railway
-        run: npx @railway/cli@latest up --service bakyson-web
+        run: npx @railway/cli@latest up --service bakyson-web --detach
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
