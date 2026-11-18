@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { ChevronRight, MapPin, CheckCircle, FileText, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { motion, AnimatePresence } from "motion/react";
 import { motionTokens, springs } from "@/lib/motion-tokens";
 import { useSafeMotion } from "@/hooks/use-reduced-motion";
 
@@ -130,13 +130,11 @@ export default function CareersContent() {
       if (formData.resume) {
         formDataToSend.append("resume", formData.resume);
       }
-
       const res = await fetch("/api/careers", {
         method: "POST",
         body: formDataToSend,
       });
       const data = await res.json();
-
       if (res.ok) {
         setSubmitted(true);
       } else {
@@ -216,9 +214,9 @@ export default function CareersContent() {
               <motion.div
                 key={job.id}
                 variants={itemVariants}
-                className="p-8 rounded-2xl bg-background border border-border hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 group"
                 whileHover={{ y: -4 }}
                 transition={springs.gentle}
+                className="p-8 rounded-2xl bg-background border border-border hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 group"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div>
@@ -276,7 +274,7 @@ export default function CareersContent() {
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+              className="border-2 border-primary text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary hover:text-background transition-all"
               onClick={() => handleApplyClick()}
             >
               Submit Open Application
