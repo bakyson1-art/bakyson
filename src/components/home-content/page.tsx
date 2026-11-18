@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { MapPin, ShieldCheck, ArrowRight, Play, Layers, ShieldCheck as ShieldIcon, Users, Layers as LayersIcon, Award, MapPin as MapPinIcon } from "lucide-react";
+import { MapPin, ShieldCheck, ArrowRight, Play, Layers, Users, Award, MapPin as MapPinIcon, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,7 +41,7 @@ const services = [
     title: "Safety & Security",
     subtitle: "Protection systems",
     description: "Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.",
-    icon: ShieldIcon,
+    icon: ShieldCheck,
     features: [
       "Access control & biometrics",
       "CCTV & video analytics",
@@ -301,8 +301,8 @@ export default function HomeContent() {
                     </p>
                     <ul className="space-y-2 mb-6">
                       {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm text-foreground-muted">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        <li key={i} className="flex items-start gap-2 text-sm text-foreground-muted">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
                           {feature}
                         </li>
                       ))}
@@ -417,7 +417,7 @@ export default function HomeContent() {
               <motion.li
                 key={study.slug}
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -motionTokens.distance.md }}
                 transition={springs.gentle}
               >
                 <Card variant="hover">
