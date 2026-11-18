@@ -1,0 +1,358 @@
+- generic [active] [ref=f8e1]:
+  - link "Skip to main content" [ref=f8e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Main navigation" [ref=f8e3]:
+    - generic [ref=f8e5]:
+      - link "Bakyson Home" [ref=f8e6] [cursor=pointer]:
+        - /url: /
+        - img "Bakyson logo" [ref=f8e7]
+        - text: Bakyson
+      - generic [ref=f8e10]:
+        - link "Home" [ref=f8e11] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=f8e12] [cursor=pointer]:
+          - /url: /about
+        - link "Services" [ref=f8e13] [cursor=pointer]:
+          - /url: /services
+        - link "Portfolio" [ref=f8e14] [cursor=pointer]:
+          - /url: /portfolio
+        - link "Case Studies" [ref=f8e15] [cursor=pointer]:
+          - /url: /case-studies
+        - link "Blog" [ref=f8e16] [cursor=pointer]:
+          - /url: /blog
+        - link "Careers" [ref=f8e17] [cursor=pointer]:
+          - /url: /careers
+        - link "Contact" [ref=f8e18] [cursor=pointer]:
+          - /url: /contact
+        - link "Client Portal" [ref=f8e19] [cursor=pointer]:
+          - /url: /portal/login
+      - button "Open menu" [ref=f8e21]
+  - button "Open chat" [ref=f8e24]
+  - main [ref=f8e27]:
+    - generic [ref=f8e29]:
+      - link "Skip to main content" [ref=f8e30] [cursor=pointer]:
+        - /url: "#main-content"
+      - region "Reinvent Your Business with Cutting-Edge ICT Solutions" [ref=f8e31]:
+        - generic [ref=f8e33]:
+          - generic [ref=f8e34]:
+            - generic [ref=f8e35]: Now Serving 15+ Countries Across Sub-Saharan Africa
+            - heading "Reinvent Your Business with Cutting-Edge ICT Solutions" [level=1] [ref=f8e36]
+            - paragraph [ref=f8e37]: Bakyson is a Design and Build ELV services provider delivering affordable, next-generation ICT systems for Hospitality, Healthcare, Corporates, and Learning Institutions across Nigeria, Kenya, South Africa, and beyond.
+            - generic [ref=f8e38]:
+              - link "Explore Services" [ref=f8e39] [cursor=pointer]:
+                - /url: /services
+              - link "Client Portal" [ref=f8e42] [cursor=pointer]:
+                - /url: /portal/login
+          - generic [ref=f8e43]:
+            - generic [ref=f8e44]:
+              - img "Modern hotel lobby with digital signage" [ref=f8e45]
+              - generic [ref=f8e46]:
+                - generic [ref=f8e47]: JW Marriott, Nairobi
+                - heading "Interactive IPTV Deployment" [level=3] [ref=f8e51]
+            - generic [ref=f8e58]:
+              - paragraph [ref=f8e59]: 99.9%
+              - paragraph [ref=f8e60]: System Uptime SLA
+      - region "Powering Africa's Smart Buildings" [ref=f8e61]:
+        - generic [ref=f8e62]:
+          - generic [ref=f8e63]:
+            - generic [ref=f8e64]: Our Services
+            - heading "Powering Africa's Smart Buildings" [level=2] [ref=f8e65]
+            - paragraph [ref=f8e66]: Comprehensive ELV systems integration across six solution families, tailored to your industry and scale.
+          - list [ref=f8e67]:
+            - listitem [ref=f8e68]:
+              - generic [ref=f8e69]:
+                - generic [ref=f8e70]:
+                  - heading "Infotainment & IPTV" [level=3] [ref=f8e74]
+                  - paragraph [ref=f8e75]: Guest entertainment systems
+                - generic [ref=f8e76]:
+                  - paragraph [ref=f8e77]: Interactive IPTV and digital signage solutions that transform guest experiences in hotels and public spaces.
+                  - list [ref=f8e78]:
+                    - listitem [ref=f8e79]: Interactive TV & casting
+                    - listitem [ref=f8e80]: Digital signage management
+                    - listitem [ref=f8e81]: Content delivery networks
+                    - listitem [ref=f8e82]: Guest device integration
+                    - listitem [ref=f8e83]: Analytics & reporting
+                - link "Learn more" [ref=f8e85] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f8e88]:
+              - generic [ref=f8e89]:
+                - generic [ref=f8e90]:
+                  - heading "Network & Communication" [level=3] [ref=f8e96]
+                  - paragraph [ref=f8e97]: Connectivity infrastructure
+                - generic [ref=f8e98]:
+                  - paragraph [ref=f8e99]: HSIA, structured cabling, IP telephony, and network infrastructure for seamless connectivity across campuses.
+                  - list [ref=f8e100]:
+                    - listitem [ref=f8e101]: High-speed internet (HSIA)
+                    - listitem [ref=f8e102]: Structured cabling (Cat6a/Fiber)
+                    - listitem [ref=f8e103]: IP telephony & PBX
+                    - listitem [ref=f8e104]: Wi-Fi 6/6E deployment
+                    - listitem [ref=f8e105]: Network monitoring & NOC
+                - link "Learn more" [ref=f8e107] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f8e110]:
+              - generic [ref=f8e111]:
+                - generic [ref=f8e112]:
+                  - heading "Safety & Security" [level=3] [ref=f8e117]
+                  - paragraph [ref=f8e118]: Protection systems
+                - generic [ref=f8e119]:
+                  - paragraph [ref=f8e120]: Access control, fire evacuation, video surveillance, and voice evacuation systems for maximum protection.
+                  - list [ref=f8e121]:
+                    - listitem [ref=f8e122]: Access control & biometrics
+                    - listitem [ref=f8e123]: CCTV & video analytics
+                    - listitem [ref=f8e124]: Fire detection & evacuation
+                    - listitem [ref=f8e125]: Voice alarm systems
+                    - listitem [ref=f8e126]: Perimeter intrusion detection
+                - link "Learn more" [ref=f8e128] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f8e131]:
+              - generic [ref=f8e132]:
+                - generic [ref=f8e133]:
+                  - heading "Audio Visual" [level=3] [ref=f8e140]
+                  - paragraph [ref=f8e141]: Meeting & event tech
+                - generic [ref=f8e142]:
+                  - paragraph [ref=f8e143]: Meeting room solutions, video walls, BGM, displays, and projectors for corporate and event spaces.
+                  - list [ref=f8e144]:
+                    - listitem [ref=f8e145]: Video conferencing rooms
+                    - listitem [ref=f8e146]: LED video walls & displays
+                    - listitem [ref=f8e147]: Professional sound systems
+                    - listitem [ref=f8e148]: Digital signage & wayfinding
+                    - listitem [ref=f8e149]: Control systems & automation
+                - link "Learn more" [ref=f8e151] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f8e154]:
+              - generic [ref=f8e155]:
+                - generic [ref=f8e156]:
+                  - heading "Green Solutions" [level=3] [ref=f8e161]
+                  - paragraph [ref=f8e162]: Energy efficiency
+                - generic [ref=f8e163]:
+                  - paragraph [ref=f8e164]: BMS, GRMS, and home automation systems that drive energy efficiency and smart building operations.
+                  - list [ref=f8e165]:
+                    - listitem [ref=f8e166]: Building management (BMS)
+                    - listitem [ref=f8e167]: Guest room management (GRMS)
+                    - listitem [ref=f8e168]: Energy monitoring & optimization
+                    - listitem [ref=f8e169]: IoT sensor networks
+                    - listitem [ref=f8e170]: Sustainability reporting
+                - link "Learn more" [ref=f8e172] [cursor=pointer]:
+                  - /url: /services
+            - listitem [ref=f8e175]:
+              - generic [ref=f8e176]:
+                - generic [ref=f8e177]:
+                  - heading "Back of House" [level=3] [ref=f8e182]
+                  - paragraph [ref=f8e183]: IT hardware & ops
+                - generic [ref=f8e184]:
+                  - paragraph [ref=f8e185]: Servers, laptops, computers, printers, and IT hardware to power your operations behind the scenes.
+                  - list [ref=f8e186]:
+                    - listitem [ref=f8e187]: Server & storage solutions
+                    - listitem [ref=f8e188]: Endpoint devices (laptops/PCs)
+                    - listitem [ref=f8e189]: Print & document management
+                    - listitem [ref=f8e190]: IT asset management
+                    - listitem [ref=f8e191]: Helpdesk & support services
+                - link "Learn more" [ref=f8e193] [cursor=pointer]:
+                  - /url: /services
+      - region "Designing and Building ELV Solutions for Sub-Saharan Africa" [ref=f8e196]:
+        - generic [ref=f8e198]:
+          - generic [ref=f8e199]:
+            - generic [ref=f8e200]: About Bakyson
+            - heading "Designing and Building ELV Solutions for Sub-Saharan Africa" [level=2] [ref=f8e201]
+            - paragraph [ref=f8e202]: Bakyson is a Design and Build ELV services provider with a core focus on Hospitality, Healthcare, Corporates, and Learning Institutions. We deliver affordable, cutting-edge, and viable ICT solutions that transform how businesses operate and how people experience technology.
+            - paragraph [ref=f8e203]: With strategic operational hubs in Nigeria, Kenya, and South Africa, we serve diverse industry verticals across the continent, building lasting partnerships that drive success.
+            - generic [ref=f8e204]:
+              - generic [ref=f8e205]: Innovation
+              - generic [ref=f8e206]: Experience
+              - generic [ref=f8e207]: Knowledge
+              - generic [ref=f8e208]: Commitment
+              - generic [ref=f8e209]: Coverage
+          - generic [ref=f8e211]:
+            - img "Network infrastructure and server room" [ref=f8e212]
+            - generic [ref=f8e213]:
+              - text: Sub-Saharan Africa
+              - heading "Strategic Coverage" [level=3] [ref=f8e214]
+      - region "Proven Impact Across the Continent" [ref=f8e215]:
+        - generic [ref=f8e216]:
+          - generic [ref=f8e217]:
+            - generic [ref=f8e218]:
+              - generic [ref=f8e219]: Featured Work
+              - heading "Proven Impact Across the Continent" [level=2] [ref=f8e220]
+            - link "View All Case Studies" [ref=f8e221] [cursor=pointer]:
+              - /url: /case-studies
+          - list [ref=f8e224]:
+            - listitem [ref=f8e225]:
+              - generic [ref=f8e226]:
+                - generic [ref=f8e227]:
+                  - img "JW Marriott Nairobi" [ref=f8e228]
+                  - generic [ref=f8e229]: Hospitality
+                - generic [ref=f8e230]:
+                  - heading "JW Marriott Nairobi" [level=3] [ref=f8e231]
+                  - paragraph [ref=f8e232]: Nairobi, Kenya
+                  - generic [ref=f8e233]:
+                    - text: Interactive IPTV & Digital Signage
+                    - link "Read story" [ref=f8e234] [cursor=pointer]:
+                      - /url: /case-studies/jw-marriott-nairobi
+            - listitem [ref=f8e235]:
+              - generic [ref=f8e236]:
+                - generic [ref=f8e237]:
+                  - img "Aga Khan University Hospital Kisumu" [ref=f8e238]
+                  - generic [ref=f8e239]: Healthcare
+                - generic [ref=f8e240]:
+                  - heading "Aga Khan University Hospital Kisumu" [level=3] [ref=f8e241]
+                  - paragraph [ref=f8e242]: Kisumu, Kenya
+                  - generic [ref=f8e243]:
+                    - text: Nurse Call & Access Control
+                    - link "Read story" [ref=f8e244] [cursor=pointer]:
+                      - /url: /case-studies/aga-khan-kisumu
+            - listitem [ref=f8e245]:
+              - generic [ref=f8e246]:
+                - generic [ref=f8e247]:
+                  - img "African Reagent Accra" [ref=f8e248]
+                  - generic [ref=f8e249]: Corporate
+                - generic [ref=f8e250]:
+                  - heading "African Reagent Accra" [level=3] [ref=f8e251]
+                  - paragraph [ref=f8e252]: Accra, Ghana
+                  - generic [ref=f8e253]:
+                    - text: Network Infrastructure & HSIA
+                    - link "Read story" [ref=f8e254] [cursor=pointer]:
+                      - /url: /case-studies/african-reagent-accra
+            - listitem [ref=f8e255]:
+              - generic [ref=f8e256]:
+                - generic [ref=f8e257]:
+                  - img "Hilton Accra Cantonments" [ref=f8e258]
+                  - generic [ref=f8e259]: Hospitality
+                - generic [ref=f8e260]:
+                  - heading "Hilton Accra Cantonments" [level=3] [ref=f8e261]
+                  - paragraph [ref=f8e262]: Accra, Ghana
+                  - generic [ref=f8e263]:
+                    - text: Audio Visual & Meeting Rooms
+                    - link "Read story" [ref=f8e264] [cursor=pointer]:
+                      - /url: /case-studies/hilton-accra-cantonments
+      - region "Where We've Built Across Africa" [ref=f8e265]:
+        - generic [ref=f8e266]:
+          - generic [ref=f8e267]:
+            - generic [ref=f8e268]: Our Portfolio
+            - heading "Where We've Built Across Africa" [level=2] [ref=f8e269]
+            - paragraph [ref=f8e270]: Explore our project locations on the interactive map below. From Lagos to Nairobi, Johannesburg to Accra — Bakyson is there.
+          - generic [ref=f8e271]:
+            - generic [ref=f8e273]:
+              - generic [ref=f8e277]:
+                - button "Nigeria projects" [ref=f8e278]: "Nigeria: 3 projects"
+                - button "Kenya projects" [ref=f8e279]: "Kenya: 3 projects"
+                - button "South Africa projects" [ref=f8e280]: "South Africa: 2 projects"
+                - button "Ghana projects" [ref=f8e281]: "Ghana: 2 projects"
+              - generic [ref=f8e282]:
+                - generic [ref=f8e283]:
+                  - generic [ref=f8e284]: 12 Active Projects
+                  - generic [ref=f8e285]: NGKEZAGH
+                - link "View Full Portfolio" [ref=f8e286] [cursor=pointer]:
+                  - /url: /portfolio
+            - generic [ref=f8e287]:
+              - heading "Country Presence" [level=3] [ref=f8e288]
+              - generic [ref=f8e289]:
+                - generic [ref=f8e290]:
+                  - generic [ref=f8e291]:
+                    - generic [ref=f8e292]: NGNigeria
+                    - generic [ref=f8e293]: 3 Projects
+                  - paragraph [ref=f8e294]: Lagos, Abuja, Port Harcourt
+                - generic [ref=f8e295]:
+                  - generic [ref=f8e296]:
+                    - generic [ref=f8e297]: KEKenya
+                    - generic [ref=f8e298]: 3 Projects
+                  - paragraph [ref=f8e299]: Nairobi, Kisumu, Mombasa
+                - generic [ref=f8e300]:
+                  - generic [ref=f8e301]:
+                    - generic [ref=f8e302]: ZASouth Africa
+                    - generic [ref=f8e303]: 2 Projects
+                  - paragraph [ref=f8e304]: Johannesburg, Cape Town
+                - generic [ref=f8e305]:
+                  - generic [ref=f8e306]:
+                    - generic [ref=f8e307]: GHGhana
+                    - generic [ref=f8e308]: 2 Projects
+                  - paragraph [ref=f8e309]: Accra, Kumasi
+      - generic [ref=f8e313]:
+        - heading "Ready to Transform Your Business?" [level=2] [ref=f8e314]
+        - paragraph [ref=f8e315]: Get a free consultation and custom quote for your ICT project. We'll design, build, and support your solution end to end.
+        - generic [ref=f8e316]:
+          - link "Get a Free Quote" [ref=f8e317] [cursor=pointer]:
+            - /url: /contact
+          - link "Client Portal" [ref=f8e320] [cursor=pointer]:
+            - /url: /portal/login
+  - contentinfo [ref=f8e321]:
+    - generic [ref=f8e322]:
+      - generic [ref=f8e323]:
+        - generic [ref=f8e324]:
+          - generic [ref=f8e325]:
+            - generic [ref=f8e326]: B
+            - text: Bakyson
+          - paragraph [ref=f8e327]: Reinventing businesses across Sub-Saharan Africa with cutting-edge ICT solutions for Hospitality, Healthcare, Corporates, and Learning Institutions.
+          - generic [ref=f8e328]:
+            - link "Facebook" [ref=f8e329] [cursor=pointer]:
+              - /url: https://www.facebook.com/BakysonEnt
+            - link "Instagram" [ref=f8e332] [cursor=pointer]:
+              - /url: https://www.instagram.com/bakysonent/
+        - generic [ref=f8e335]:
+          - heading "Services" [level=3] [ref=f8e336]
+          - list [ref=f8e337]:
+            - listitem [ref=f8e338]:
+              - link "Infotainment & IPTV" [ref=f8e339] [cursor=pointer]:
+                - /url: /services#infotainment-iptv
+            - listitem [ref=f8e340]:
+              - link "Digital Signage" [ref=f8e341] [cursor=pointer]:
+                - /url: /services#digital-signage
+            - listitem [ref=f8e342]:
+              - link "Network & Communication" [ref=f8e343] [cursor=pointer]:
+                - /url: /services#network-communication
+            - listitem [ref=f8e344]:
+              - link "Safety & Security" [ref=f8e345] [cursor=pointer]:
+                - /url: /services#safety-security
+            - listitem [ref=f8e346]:
+              - link "Audio Visual" [ref=f8e347] [cursor=pointer]:
+                - /url: /services#audio-visual
+            - listitem [ref=f8e348]:
+              - link "Green Solutions" [ref=f8e349] [cursor=pointer]:
+                - /url: /services#green-solutions
+        - generic [ref=f8e350]:
+          - heading "Industries" [level=3] [ref=f8e351]
+          - list [ref=f8e352]:
+            - listitem [ref=f8e353]:
+              - link "Hotels" [ref=f8e354] [cursor=pointer]:
+                - /url: /industry#hotels
+            - listitem [ref=f8e355]:
+              - link "Hospitals" [ref=f8e356] [cursor=pointer]:
+                - /url: /industry#hospitals
+            - listitem [ref=f8e357]:
+              - link "Corporates" [ref=f8e358] [cursor=pointer]:
+                - /url: /industry#corporates
+            - listitem [ref=f8e359]:
+              - link "Learning Institutions" [ref=f8e360] [cursor=pointer]:
+                - /url: /industry#learning institutions
+            - listitem [ref=f8e361]:
+              - link "Events & Stadia" [ref=f8e362] [cursor=pointer]:
+                - /url: /industry#events & stadia
+            - listitem [ref=f8e363]:
+              - link "Telcos & ISPs" [ref=f8e364] [cursor=pointer]:
+                - /url: /industry#telcos & isps
+        - generic [ref=f8e365]:
+          - heading "Contact" [level=3] [ref=f8e366]
+          - list [ref=f8e367]:
+            - listitem [ref=f8e368]:
+              - generic [ref=f8e369]:
+                - generic [ref=f8e370]: +234 1 234 5678
+                - generic [ref=f8e373]: lagos@bakyson.com
+                - generic [ref=f8e376]: Mon–Fri, 9:00 AM – 5:00 PM WAT
+            - listitem [ref=f8e380]:
+              - generic [ref=f8e381]:
+                - generic [ref=f8e382]: +254 706 897 778
+                - generic [ref=f8e385]: nairobi@bakyson.com
+                - generic [ref=f8e388]: Mon–Fri, 8:00 AM – 6:00 PM EAT
+            - listitem [ref=f8e392]:
+              - generic [ref=f8e393]:
+                - generic [ref=f8e394]: +27 10 123 4567
+                - generic [ref=f8e397]: johannesburg@bakyson.com
+                - generic [ref=f8e400]: Mon–Fri, 8:30 AM – 5:30 PM SAST
+      - generic [ref=f8e404]:
+        - paragraph [ref=f8e405]: © 2026 Bakyson. All Rights Reserved.
+        - generic [ref=f8e406]:
+          - link "Terms of Use" [ref=f8e407] [cursor=pointer]:
+            - /url: /terms-of-use
+          - link "Cookie Policy" [ref=f8e408] [cursor=pointer]:
+            - /url: /cookie-policy
+          - link "Privacy Policy" [ref=f8e409] [cursor=pointer]:
+            - /url: /privacy-policy
