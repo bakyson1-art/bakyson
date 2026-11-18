@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock, ArrowRight, Send, MessageSquare, Smartphone, CheckCircle } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const offices = [
   {
@@ -272,14 +275,16 @@ export default function ContactContent() {
                         placeholder="Tell us about your project..."
                       />
                     </div>
-                    <button
+                    <Button
                       type="submit"
                       disabled={submitting}
-                      className="w-full bg-bakyson-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-bakyson-orange-dark transition-all disabled:opacity-50 shadow-lg shadow-orange/25 flex items-center justify-center gap-2"
+                      className="w-full bg-primary text-background py-4 rounded-xl font-bold text-lg hover:bg-primary-hover transition-all disabled:opacity-50 shadow-lg shadow-primary/25 flex items-center justify-center gap-2"
+                      whileTap={{ scale: motionTokens.scale.press }}
+                      transition={springs.snappy}
                     >
                       {submitting ? "Sending..." : "Send Message"}
                       <Send className="w-4 h-4" />
-                    </button>
+                    </Button>
                   </form>
                 </div>
               </div>
