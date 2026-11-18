@@ -7,6 +7,7 @@ import { ArrowRight, ShieldCheck, Users, Globe, Award, Layers } from "lucide-rea
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const cornerstones = [
   {
@@ -226,7 +227,7 @@ export default function AboutContent() {
               your needs.
             </p>
             <Link href="/contact" className="inline-flex items-center gap-2">
-              <Button variant="outline" size="lg" className="text-primary hover:bg-background hover:text-primary">
+              <Button variant="outline" size="lg" className="text-primary hover:bg-background hover:text-primary" whileTap={{ scale: motionTokens.scale.press }} transition={springs.snappy}>
                 Start a Conversation <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
