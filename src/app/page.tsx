@@ -1,3 +1,13 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-foreground">
@@ -35,7 +45,7 @@ export default function Home() {
             { title: "Public Address", desc: "Clear communication across facilities." },
             { title: "Network Solutions", desc: "Robust LAN/WAN design and support." },
           ].map((s) => (
-            <div key={s.title} className="rounded-xl border border-border p-6 hover:shadow-md transition">
+            <div key={s.title} className="rounded-xl border border-border p-6 hover:shadow-md transition will-change-transform hover:-translate-y-0.5">
               <h3 className="font-semibold text-lg">{s.title}</h3>
               <p className="mt-2 text-muted-foreground">{s.desc}</p>
             </div>
@@ -64,9 +74,24 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-24 text-center">
         <h2 className="text-3xl font-semibold">Ready to upgrade your infrastructure?</h2>
         <p className="mt-4 text-muted-foreground">Get a free consultation with our ICT specialists.</p>
-        <a href="/contact" className="mt-8 inline-flex items-center justify-center rounded-md bg-primary text-white px-6 py-3 font-medium hover:bg-orange-700 transition">
-          Get Started
-        </a>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="mt-8">Get Started</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Free Consultation</DialogTitle>
+              <DialogDescription>
+                Tell us about your project and we’ll get back within 24 hours.
+              </DialogDescription>
+            </DialogHeader>
+            <form className="space-y-4 mt-4">
+              <input className="w-full rounded-md border border-input px-3 py-2" placeholder="Name" />
+              <input className="w-full rounded-md border border-input px-3 py-2" placeholder="Email" />
+              <Button type="submit" className="w-full">Request Call</Button>
+            </form>
+          </DialogContent>
+        </Dialog>
       </section>
     </div>
   );
