@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -103,8 +105,14 @@ export default function Home() {
                   setToastOpen(true);
                 }}
               >
-                <input className="w-full rounded-md border border-input px-3 py-2" placeholder="Name" />
-                <input className="w-full rounded-md border border-input px-3 py-2" placeholder="Email" />
+                <div className="space-y-2">
+                  <Label htmlFor="consult-name">Name</Label>
+                  <Input id="consult-name" placeholder="Your name" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="consult-email">Email</Label>
+                  <Input id="consult-email" type="email" placeholder="you@company.com" required />
+                </div>
                 <Button type="submit" className="w-full">Request Call</Button>
               </form>
             </DialogContent>
