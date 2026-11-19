@@ -43,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         <main className="flex-1">{children}</main>
         <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Bakyson. All rights reserved.
+          © 2026 Bakyson. All rights reserved.
         </footer>
       </body>
     </html>
