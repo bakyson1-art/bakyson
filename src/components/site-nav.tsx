@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -24,6 +25,8 @@ const nav = [
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
   return (
     <>
       <div className="md:hidden">
@@ -41,7 +44,8 @@ export default function SiteNav() {
                   <li key={item.href}>
                     <a
                       href={item.href}
-                      className="text-lg hover:text-primary"
+                      className={`text-lg hover:text-primary ${isActive(item.href) ? "text-primary font-semibold" : ""}`}
+                      aria-current={isActive(item.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
                     >
                       {item.label}
@@ -55,7 +59,7 @@ export default function SiteNav() {
       </div>
       <nav className="hidden md:flex gap-6 text-sm" aria-label="Primary">
         {nav.map((item) => (
-          <a key={item.href} href={item.href} className="hover:text-primary transition">
+          <a key={item.href} href={item.href} className={`hover:text-primary transition ${isActive(item.href) ? "text-primary font-semibold" : ""}`} aria-current={isActive(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))}
