@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export default function PortalPage() {
   return (
     <div className="min-h-screen bg-white text-foreground">
@@ -11,9 +13,7 @@ export default function PortalPage() {
           <input className="w-full rounded-md border border-input px-3 py-2 mb-4" placeholder="you@company.com" />
           <label className="block text-sm font-medium mb-2">Password</label>
           <input type="password" className="w-full rounded-md border border-input px-3 py-2 mb-6" placeholder="••••••••" />
-          <button className="w-full rounded-md bg-primary text-white px-6 py-3 font-medium">
-            Sign In
-          </button>
+          <Button className="w-full">Sign In</Button>
           <p className="mt-4 text-sm text-muted-foreground">
             New client? Contact our team at <a href="/contact" className="text-primary underline">/contact</a> for access.
           </p>

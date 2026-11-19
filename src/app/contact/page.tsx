@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -8,7 +10,7 @@ export default function ContactPage() {
           <input className="w-full rounded-md border border-border px-4 py-2" placeholder="Name" />
           <input className="w-full rounded-md border border-border px-4 py-2" placeholder="Email" />
           <textarea className="w-full rounded-md border border-border px-4 py-2" rows={4} placeholder="Message" />
-          <button className="rounded-md bg-primary text-white px-6 py-2">Send</button>
+          <Button type="submit">Send</Button>
         </form>
       </section>
     </div>
