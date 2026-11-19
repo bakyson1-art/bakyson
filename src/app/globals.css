@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* === Bakyson Design Tokens === */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "ui-monospace", SFMono-Regular, monospace;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Primitives */
+  --color-orange-500: #FF6B00;
+  --color-orange-700: #E55A00;
+  --color-black-900: #0A0A0A;
+  --color-white: #FFFFFF;
+  --color-gray-100: #F3F4F6;
+  --color-gray-900: #111827;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Semantic */
+  --color-background: #ffffff;
+  --color-foreground: #0A0A0A;
+  --color-primary: #FF6B00;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #F5F5F5;
+  --color-secondary-foreground: #0A0A0A;
+  --color-muted: #F3F4F6;
+  --color-muted-foreground: #6B7280;
+  --color-accent: #FF6B00;
+  --color-accent-foreground: #FFFFFF;
+  --color-destructive: #DC2626;
+  --color-border: #D1D5DB;
+  --color-input: #D1D5DB;
+  --color-card: #ffffff;
+  --color-card-foreground: #0A0A0A;
+
+  /* Radius */
+  --radius: 0.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+}
+
