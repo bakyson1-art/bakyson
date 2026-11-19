@@ -14,9 +14,38 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const nav = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/case-studies", label: "Case Studies" },
+    { href: "/blog", label: "Blog" },
+    { href: "/careers", label: "Careers" },
+    { href: "/contact", label: "Contact" },
+    { href: "/portal", label: "Portal" },
+  ];
+
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="sticky top-0 z-40 border-b border-border bg-white/80 backdrop-blur">
+          <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
+            <a href="/" className="font-semibold text-lg">Bakyson</a>
+            <nav className="hidden md:flex gap-6 text-sm">
+              {nav.map((item) => (
+                <a key={item.href} href={item.href} className="hover:text-primary transition">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </header>
+        <main className="flex-1">{children}</main>
+        <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Bakyson. All rights reserved.
+        </footer>
+      </body>
     </html>
   );
 }
