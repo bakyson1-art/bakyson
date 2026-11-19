@@ -1,4 +1,4 @@
-import PortfolioContent from "@/components/PortfolioContent";
+import PortfolioContent from "@/components/portfolio-content/page";
 
 export const metadata = {
   title: "Portfolio",

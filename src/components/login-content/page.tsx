@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { motion } from "motion/react";
 import { motionTokens, springs } from "@/lib/motion-tokens";
 
 const sectionVariants = {

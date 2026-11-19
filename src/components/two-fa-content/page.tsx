@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ShieldCheck, AlertTriangle, Clock, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 32 },

@@ -1,4 +1,4 @@
-import TwoFAContent from "@/components/TwoFAContent";
+import TwoFAContent from "@/components/two-fa-content/page";
 
 export const metadata = {
   title: "Two-Factor Authentication",

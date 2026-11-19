@@ -1,4 +1,4 @@
-import LoginContent from "@/components/LoginContent";
+import LoginContent from "@/components/login-content/page";
 
 export const metadata = {
   title: "Client Portal Login",
