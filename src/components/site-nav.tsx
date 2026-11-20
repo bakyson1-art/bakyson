@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -32,7 +33,7 @@ export default function SiteNav() {
       <div className="md:hidden">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" aria-label="Open menu">☰</Button>
+            <Button variant="outline" aria-label="Open menu"><Menu className="h-5 w-5" /></Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
