@@ -58,3 +58,13 @@ CREATE TABLE IF NOT EXISTS newsletter_subscriptions (
   status TEXT DEFAULT 'active',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS activity_logs (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  action TEXT NOT NULL,
+  target_type TEXT,
+  target_id INT,
+  metadata JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
