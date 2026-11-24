@@ -81,12 +81,21 @@ It connects to the **same** PostgreSQL database and uses the **same**
 
 ### Database
 
-Both applications share the same database. Apply `database/schema.sql` to provision tables, then create an admin account with `database/seed.sql`:
+Both applications share the same database. Railway's Postgres service has no SQL
+editor, so use the setup script instead of `psql`. Run it from this repo against
+the **public** connection URL (Railway: Postgres service -> Connect -> Public
+Network):
 
-```bash
-psql "$DATABASE_URL" -f database/schema.sql
-psql "$DATABASE_URL" -f database/seed.sql
+```powershell
+$env:DATABASE_URL="postgresql://postgres:PASSWORD@HOST.proxy.rlwy.net:PORT/railway"
+$env:ADMIN_EMAIL="you@yourcompany.com"
+$env:ADMIN_PASSWORD="a-strong-password"
+node scripts/db-setup.mjs
 ```
+
+It applies `database/schema.sql` (idempotent), then creates the admin account, or
+resets its password if that email already exists. Re-running is safe.
+Add `--schema-only` to skip the admin account.
 
 ### Environment Variables
 
