@@ -38,7 +38,11 @@ The public site includes a **Client Portal** at `/portal` where clients can sign
 
 #### Portal Sign-In
 
-The `/portal` sign-in form is wired to NextAuth. When submitted, it posts credentials to `/api/auth/callback/credentials` and redirects to `/portal` on success.
+The `/portal` page is the public sign-in screen. It fetches a CSRF token from
+`/api/auth/csrf`, posts credentials to `/api/auth/callback/credentials`, then shows
+the signed-in state with a sign-out button. Only routes *below* `/portal` (e.g.
+`/portal/projects`) are protected by middleware, so the sign-in page itself stays
+reachable.
 
 ### Admin Dashboard (separate repository)
 
@@ -93,6 +97,7 @@ NEXTAUTH_URL=https://<main-site-url>        # this app's public URL
 NEXTAUTH_SECRET=<random-secret>             # must match the admin app
 DATABASE_URL=<postgres-connection-string>   # shared PostgreSQL
 RESEND_API_KEY=re_...                       # optional; ticket status emails
+NEXT_PUBLIC_ADMIN_URL=https://<admin-site-url>  # staff "Admin Dashboard" link
 ```
 
 Admin app (see its repo):

@@ -62,11 +62,18 @@ export default function SiteNav() {
       .finally(() => setLoaded(true));
   }, []);
 
-  const adminLink = (
-    <a href="/admin" className="text-sm hover:text-primary transition">
+  // The staff dashboard is a separate application (see NEXT_PUBLIC_ADMIN_URL).
+  const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL;
+  const adminLink = adminUrl ? (
+    <a
+      href={adminUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-sm hover:text-primary transition"
+    >
       Admin Dashboard
     </a>
-  );
+  ) : null;
 
   return (
     <>

@@ -1,14 +1,14 @@
 import { withAuth } from 'next-auth/middleware';
 
 export default withAuth({
-  pages: { signIn: '/portal/login' },
+  pages: { signIn: '/portal' },
   callbacks: {
     async authorized({ token, req }) {
       const { pathname } = req.nextUrl;
 
-      // Admin dashboard and client portal both require authentication.
-      // Role-based authorization is enforced inside each page/action.
-      if (pathname.startsWith('/admin') || pathname.startsWith('/portal')) {
+      // `/portal` itself is the public sign-in page, so only the pages below it
+      // are protected. The staff dashboard lives in a separate application.
+      if (pathname.startsWith('/portal/')) {
         return !!token;
       }
 
@@ -18,5 +18,6 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ['/admin/:path*', '/portal/:path*'],
+  // `:path+` matches one or more segments, leaving `/portal` itself public.
+  matcher: ['/portal/:path+'],
 };

@@ -1,16 +1,37 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from 'react';
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+type SessionUser = {
+  name?: string | null;
+  email?: string | null;
+  role?: string;
+};
+
+async function getCsrfToken() {
+  const res = await fetch('/api/auth/csrf', { cache: 'no-store' });
+  if (!res.ok) throw new Error('Could not start sign in');
+  const data = await res.json();
+  return data.csrfToken as string;
+}
+
 export default function PortalPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const router = useRouter();
+  const [user, setUser] = useState<SessionUser | null>(null);
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/auth/session', { cache: 'no-store' })
+      .then((res) => res.json())
+      .then((data) => setUser(data?.user ?? null))
+      .catch(() => setUser(null))
+      .finally(() => setChecked(true));
+  }, []);
 
   async function handleSignIn(e: React.FormEvent) {
     e.preventDefault();
@@ -22,28 +43,52 @@ export default function PortalPage() {
     const password = formData.get('password') as string;
 
     try {
+      const csrfToken = await getCsrfToken();
       const res = await fetch('/api/auth/callback/credentials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
           email,
           password,
-          csrfToken: '',
+          csrfToken,
           callbackUrl: '/portal',
           json: 'true',
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok || data.error) {
-        throw new Error(data.error?.message || 'Invalid email or password');
+        throw new Error(
+          data.error === 'CredentialsSignin'
+            ? 'Invalid email or password'
+            : data.error?.message || 'Invalid email or password'
+        );
       }
 
-      router.push('/portal');
-      router.refresh();
+      const session = await fetch('/api/auth/session', { cache: 'no-store' }).then((r) => r.json());
+      setUser(session?.user ?? null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Sign in failed');
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleSignOut() {
+    setError('');
+    setIsLoading(true);
+
+    try {
+      const csrfToken = await getCsrfToken();
+      await fetch('/api/auth/signout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ csrfToken, callbackUrl: '/portal', json: 'true' }),
+      });
+      setUser(null);
+    } catch {
+      setError('Sign out failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -58,37 +103,65 @@ export default function PortalPage() {
         </p>
 
         {error && (
-          <div className="mx-auto max-w-md mb-6 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
+          <div className="mx-auto max-w-md mb-6 mt-8 p-4 rounded-md bg-red-50 border border-red-200 text-red-800 text-sm">
             {error}
           </div>
         )}
 
-        <Card className="mt-10 max-w-md mx-auto text-left">
-          <CardHeader>
-            <CardTitle>Sign In</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Enter your client credentials to access the portal.
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <form onSubmit={handleSignIn} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="you@company.com" required />
+        {checked && user ? (
+          <Card className="mt-10 max-w-md mx-auto text-left">
+            <CardHeader>
+              <CardTitle>Signed In</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                You are signed in as <span className="font-medium text-foreground">{user.email}</span>.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Project updates and support tickets are being migrated to this portal. In the
+                meantime, contact our team if you need an update on your account.
+              </p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <a
+                  href="/contact"
+                  className={`${buttonVariants({ variant: 'outline' })} w-full`}
+                >
+                  Contact Support
+                </a>
+                <Button className="w-full" onClick={handleSignOut} disabled={isLoading}>
+                  {isLoading ? 'Signing out...' : 'Sign Out'}
+                </Button>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" name="password" type="password" placeholder="••••••••" required />
-              </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Signing in...' : 'Sign In'}
-              </Button>
-            </form>
-            <p className="text-sm text-muted-foreground">
-              New client? Contact our team at <a href="/contact" className="text-primary underline">/contact</a> for access.
-            </p>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="mt-10 max-w-md mx-auto text-left">
+            <CardHeader>
+              <CardTitle>Sign In</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Enter your client credentials to access the portal.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <form onSubmit={handleSignIn} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" name="email" type="email" placeholder="you@company.com" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" name="password" type="password" placeholder="••••••••" required />
+                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? 'Signing in...' : 'Sign In'}
+                </Button>
+              </form>
+              <p className="text-sm text-muted-foreground">
+                New client? Contact our team at <a href="/contact" className="text-primary underline">/contact</a> for access.
+              </p>
+            </CardContent>
+          </Card>
+        )}
       </section>
     </div>
   );
