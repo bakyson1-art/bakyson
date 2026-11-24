@@ -24,10 +24,13 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Bakyson is split into two separate Next.js applications that share the same PostgreSQL database:
 
-| Website | Purpose | Directory | URL |
-|---------|---------|-----------|-----|
-| **Main site** | Public-facing website (services, portfolio, contact, careers, blog, client portal) | Root (`.`) | `https://bakyson.com` |
-| **Admin dashboard** | Backend management for admins & employees | `admin/` | `https://admin.bakyson.com` |
+| Website | Purpose | Repository | URL |
+|---------|---------|------------|-----|
+| **Main site** | Public-facing website (services, portfolio, contact, careers, blog, client portal) | [`bakyson1-art/bakyson`](https://github.com/bakyson1-art/bakyson) | `https://<main-site-url>` |
+| **Admin dashboard** | Backend management for admins & employees | [`bakyson1-art/bakyson-admin`](https://github.com/bakyson1-art/bakyson-admin) | `https://<admin-site-url>` |
+
+The two apps live in **separate GitHub repositories** and deploy as two independent
+services. They share one PostgreSQL database and one `NEXTAUTH_SECRET`.
 
 ### Main Website (`/`)
 
@@ -37,14 +40,17 @@ The public site includes a **Client Portal** at `/portal` where clients can sign
 
 The `/portal` sign-in form is wired to NextAuth. When submitted, it posts credentials to `/api/auth/callback/credentials` and redirects to `/portal` on success.
 
-### Admin Dashboard (`/admin/`)
+### Admin Dashboard (separate repository)
 
-A completely separate Next.js application with its own `package.json`, routes, and deployment. It connects to the **same** PostgreSQL database and uses the **same** `NEXTAUTH_SECRET` so sessions are compatible.
+A completely separate Next.js application in its own repo:
+**[bakyson1-art/bakyson-admin](https://github.com/bakyson1-art/bakyson-admin)**.
+It connects to the **same** PostgreSQL database and uses the **same**
+`NEXTAUTH_SECRET`. See that repo's README for its setup and deployment steps.
 
 #### Access
 
-- URL: `https://admin.bakyson.com/login` (dedicated admin login page)
-- After signing in, redirected to `https://admin.bakyson.com/dashboard`
+- URL: `https://<admin-site-url>/login` (dedicated admin login page)
+- After signing in, redirected to `https://<admin-site-url>/dashboard`
 - Middleware protects all routes under `/dashboard`; `/login` and `/` are public
 - Only users with role `admin` or `employee` can access the dashboard
 - `/dashboard/users` and `/dashboard/activity-logs` are `admin`-only
@@ -78,25 +84,40 @@ psql "$DATABASE_URL" -f database/schema.sql
 psql "$DATABASE_URL" -f database/seed.sql
 ```
 
-### Environment Variables (both apps)
+### Environment Variables
+
+Main site:
 
 ```
-NEXTAUTH_URL=https://<your-domain>       # main site URL
-NEXTAUTH_ADMIN_URL=https://admin.<your-domain>  # admin site URL
-NEXTAUTH_SECRET=<random-secret>          # must match between both apps
-DATABASE_URL=<postgres-connection-string> # shared PostgreSQL
-RESEND_API_KEY=re_...   # optional; enables ticket status-change email notifications
+NEXTAUTH_URL=https://<main-site-url>        # this app's public URL
+NEXTAUTH_SECRET=<random-secret>             # must match the admin app
+DATABASE_URL=<postgres-connection-string>   # shared PostgreSQL
+RESEND_API_KEY=re_...                       # optional; ticket status emails
 ```
+
+Admin app (see its repo):
+
+```
+NEXTAUTH_URL=https://<admin-site-url>       # the ADMIN app's public URL
+NEXTAUTH_SECRET=<same value as above>
+DATABASE_URL=<same database>
+RESEND_API_KEY=re_...                       # optional
+```
+
+`NEXTAUTH_URL` must be the URL of the app it is set in - do not share one value
+between the two services.
 
 ### Running Locally
 
 ```bash
-# Main site
+# Main site (this repo)
 npm run dev
 
-# Admin dashboard (separate terminal)
-cd admin
-npm run dev
+# Admin dashboard (separate repo, separate terminal)
+git clone https://github.com/bakyson1-art/bakyson-admin
+cd bakyson-admin
+npm install
+npm run dev -- -p 3001
 ```
 
 ## Learn More
