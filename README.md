@@ -115,7 +115,8 @@ Admin app (see its repo):
 NEXTAUTH_URL=https://<admin-site-url>       # the ADMIN app's public URL
 NEXTAUTH_SECRET=<same value as above>
 DATABASE_URL=<same database>
-RESEND_API_KEY=re_...                       # optional
+RESEND_API_KEY=re_...                       # required for password reset emails
+RESEND_FROM=Bakyson <no-reply@yourdomain>   # verified sender in Resend
 ```
 
 `NEXTAUTH_URL` must be the URL of the app it is set in - do not share one value

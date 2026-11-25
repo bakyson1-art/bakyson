@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS activity_logs (
 CREATE TABLE IF NOT EXISTS password_reset_tokens (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  -- Stores a SHA-256 hash of the token emailed to the user, never the raw token.
   token TEXT NOT NULL,
   expires_at TIMESTAMPTZ NOT NULL,
   used BOOLEAN NOT NULL DEFAULT FALSE,
@@ -85,6 +86,9 @@ ALTER TABLE password_reset_tokens
 
 CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_user
   ON password_reset_tokens (user_id, used);
+
+CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_token
+  ON password_reset_tokens (token);
 
 CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_expires
   ON password_reset_tokens (expires_at);
