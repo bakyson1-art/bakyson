@@ -11,3 +11,25 @@ export async function GET() {
   const res = await query('SELECT id,subject,status,created_at FROM tickets WHERE user_id = $1 ORDER BY created_at DESC', [userRes.rows[0].id]);
   return NextResponse.json({ tickets: res.rows });
 }
+
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
+    const { userId, subject, description, priority } = body;
+
+    if (!userId || !subject || !description) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    const res = await query(
+      `INSERT INTO tickets (user_id, subject, description, priority, status)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id, subject, status, created_at`,
+      [userId, subject, description, priority || 'medium', 'open']
+    );
+
+    return NextResponse.json({ success: true, ticket: res.rows[0] }, { status: 201 });
+  } catch (error: any) {
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}

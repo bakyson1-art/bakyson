@@ -118,20 +118,31 @@ export default function PortalPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                Project updates and support tickets are being migrated to this portal. In the
-                meantime, contact our team if you need an update on your account.
+                View your project progress and support tickets below.
               </p>
-              <div className="flex flex-col gap-2 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="/portal/projects"
+                  className={`${buttonVariants({ variant: 'outline' })} w-full`}
+                >
+                  My Projects
+                </a>
+                <a
+                  href="/portal/tickets"
+                  className={`${buttonVariants({ variant: 'outline' })} w-full`}
+                >
+                  My Tickets
+                </a>
                 <a
                   href="/contact"
                   className={`${buttonVariants({ variant: 'outline' })} w-full`}
                 >
                   Contact Support
                 </a>
-                <Button className="w-full" onClick={handleSignOut} disabled={isLoading}>
-                  {isLoading ? 'Signing out...' : 'Sign Out'}
-                </Button>
               </div>
+              <Button className="w-full" onClick={handleSignOut} disabled={isLoading}>
+                {isLoading ? 'Signing out...' : 'Sign Out'}
+              </Button>
             </CardContent>
           </Card>
         ) : (

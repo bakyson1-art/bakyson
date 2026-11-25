@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -21,6 +22,8 @@ const nav = [
   { href: "/blog", label: "Blog" },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
+  { href: "/quote", label: "Get a Quote" },
+  { href: "/support", label: "Support" },
   { href: "/portal", label: "Portal" },
 ];
 
@@ -69,7 +72,7 @@ export default function SiteNav() {
       href={adminUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-sm hover:text-primary transition"
+      className="text-sm sm:text-base hover:text-primary transition px-3 py-2 rounded-md hover:bg-muted"
     >
       Admin Dashboard
     </a>
@@ -77,22 +80,25 @@ export default function SiteNav() {
 
   return (
     <>
+      {/* Mobile Menu */}
       <div className="md:hidden">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" aria-label="Open menu"><Menu className="h-5 w-5" /></Button>
+            <Button variant="outline" aria-label="Open main menu" className="h-10 w-10 p-2">
+              <Menu className="h-6 w-6" />
+            </Button>
           </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Menu</DialogTitle>
+          <DialogContent className="p-4 sm:p-6">
+            <DialogHeader className="pb-3">
+              <DialogTitle className="text-lg sm:text-xl">Menu</DialogTitle>
             </DialogHeader>
-            <nav aria-label="Mobile Primary">
-              <ul className="flex flex-col gap-4 mt-4">
+            <nav aria-label="Mobile Primary Navigation">
+              <ul className="flex flex-col gap-2 mt-4">
                 {nav.map((item) => (
                   <li key={item.href}>
                     <a
                       href={item.href}
-                      className={`text-lg hover:text-primary ${isActive(item.href) ? "text-primary font-semibold" : ""}`}
+                      className={`block px-4 py-3 text-base sm:text-lg rounded-lg hover:text-primary ${isActive(item.href) ? "text-primary font-semibold bg-muted" : ""}`}
                       aria-current={isActive(item.href) ? "page" : undefined}
                       onClick={() => setOpen(false)}
                     >
@@ -100,39 +106,52 @@ export default function SiteNav() {
                     </a>
                   </li>
                 ))}
-                {isStaff && <li>{adminLink}</li>}
+                {isStaff && (
+                  <li>
+                    <a
+                      href={adminUrl ?? "#"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block px-4 py-3 text-base sm:text-lg rounded-lg hover:text-primary hover:bg-muted"
+                    >
+                      Admin Dashboard
+                    </a>
+                  </li>
+                )}
               </ul>
             </nav>
           </DialogContent>
         </Dialog>
       </div>
-      <nav className="hidden md:flex gap-6 text-sm items-center" aria-label="Primary">
+
+      {/* Desktop Menu */}
+      <nav className="hidden md:flex gap-6 text-sm sm:text-base items-center" aria-label="Primary Navigation">
         {nav.map((item) => {
           if (item.mega) {
             return (
               <div key={item.href} className="relative group">
-                <a href={item.href} className={`flex items-center gap-1 hover:text-primary transition ${isActive(item.href) ? "text-primary font-semibold" : ""}`} aria-current={isActive(item.href) ? "page" : undefined}>
+                <a href={item.href} className={`flex items-center gap-1 px-3 py-2 rounded-md hover:text-primary transition ${isActive(item.href) ? "text-primary font-semibold" : ""}`} aria-current={isActive(item.href) ? "page" : undefined}>
                   {item.label}
                   <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
                 </a>
-                <div className="absolute left-0 top-full mt-3 w-[600px] rounded-2xl border border-border bg-white/90 backdrop-blur-xl shadow-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+                <div className="absolute left-0 top-full mt-2 w-[600px] rounded-2xl border border-border bg-white/90 backdrop-blur-xl shadow-xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Industries</h4>
+                      <h4 className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Industries</h4>
                       <ul className="space-y-2">
                         {megaIndustries.map((i) => (
                           <li key={i.label}>
-                            <a href={i.href} className="block text-sm hover:text-primary transition cursor-pointer">{i.label}</a>
+                            <a href={i.href} className="block text-sm hover:text-primary transition cursor-pointer px-3 py-1 rounded-md hover:bg-muted">{i.label}</a>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Services</h4>
+                      <h4 className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">Services</h4>
                       <ul className="space-y-2">
                         {megaServices.map((s) => (
                           <li key={s.label}>
-                            <a href={s.href} className="block text-sm hover:text-primary transition cursor-pointer">{s.label}</a>
+                            <a href={s.href} className="block text-sm hover:text-primary transition cursor-pointer px-3 py-1 rounded-md hover:bg-muted">{s.label}</a>
                           </li>
                         ))}
                       </ul>
@@ -143,7 +162,7 @@ export default function SiteNav() {
             );
           }
           return (
-            <a key={item.href} href={item.href} className={`hover:text-primary transition ${isActive(item.href) ? "text-primary font-semibold" : ""}`} aria-current={isActive(item.href) ? "page" : undefined}>
+            <a key={item.href} href={item.href} className={`px-3 py-2 rounded-md hover:text-primary transition ${isActive(item.href) ? "text-primary font-semibold" : ""}`} aria-current={isActive(item.href) ? "page" : undefined}>
               {item.label}
             </a>
           );
