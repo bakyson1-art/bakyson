@@ -75,8 +75,13 @@ CREATE TABLE IF NOT EXISTS password_reset_tokens (
   token TEXT NOT NULL,
   expires_at TIMESTAMPTZ NOT NULL,
   used BOOLEAN NOT NULL DEFAULT FALSE,
+  attempts INT NOT NULL DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Bring already-created tables up to date.
+ALTER TABLE password_reset_tokens
+  ADD COLUMN IF NOT EXISTS attempts INT NOT NULL DEFAULT 0;
 
 CREATE INDEX IF NOT EXISTS idx_password_reset_tokens_user
   ON password_reset_tokens (user_id, used);
