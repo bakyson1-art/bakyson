@@ -52,7 +52,7 @@ export default async function PortalProjectsPage() {
           <div className="text-center py-20">
             <p className="text-2xl font-semibold mb-4">No projects yet</p>
             <p className="text-muted-foreground mb-6">
-              You don't have any active projects. Contact us to start a new installation.
+              You don&apos;t have any active projects. Contact us to start a new installation.
             </p>
             <a href="/contact" className="inline-flex items-center justify-center rounded-md bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-orange-700 transition">
               Request a Quote

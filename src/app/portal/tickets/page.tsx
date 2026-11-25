@@ -58,7 +58,7 @@ export default async function PortalTicketsPage() {
           <div className="text-center py-20">
             <p className="text-2xl font-semibold mb-4">No support tickets</p>
             <p className="text-muted-foreground mb-6">
-              You haven't submitted any support tickets yet.
+              You haven&apos;t submitted any support tickets yet.
             </p>
             <a href="/support" className="inline-flex items-center justify-center rounded-md bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-orange-700 transition">
               Submit a Ticket

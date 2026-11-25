@@ -12,7 +12,7 @@ export function rateLimit(options?: Options) {
   });
 
   return {
-    check: (res: any, limit: number, token: string) => {
+    check: (res: { status?: number }, limit: number, token: string) => {
       const tokenCount = (tokenCache.get(token) as number) || 0;
       if (tokenCount >= limit) {
         res.status = 429;

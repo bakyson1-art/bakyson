@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({ success: true, ticket: res.rows[0] }, { status: 201 });
-  } catch (error: any) {
+  } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
