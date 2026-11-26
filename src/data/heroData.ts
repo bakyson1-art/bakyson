@@ -1,6 +1,5 @@
 export type HeroSlide = {
   id: string
-  brand: string
   model: string
   headline: string
   subhead: string
@@ -16,7 +15,6 @@ export type HeroSlide = {
 export const heroSlides: HeroSlide[] = [
   {
     id: 'hospitality',
-    brand: 'BAKYSON',
     model: 'Hospitality',
     headline: 'Smarter Rooms. Better Guest Wi-Fi.',
     subhead:
@@ -31,7 +29,6 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 'healthcare',
-    brand: 'BAKYSON',
     model: 'Healthcare',
     headline: 'Hospital Systems That Never Go Down.',
     subhead:
@@ -46,7 +43,6 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 'corporate',
-    brand: 'BAKYSON',
     model: 'Corporate & Commercial',
     headline: 'Smart Infrastructure for Commercial Buildings.',
     subhead:
@@ -61,7 +57,6 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 'learning',
-    brand: 'BAKYSON',
     model: 'Learning Institutions',
     headline: 'Campus-Wide Networks and Security That Scale.',
     subhead:
@@ -76,7 +71,6 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 'aviation',
-    brand: 'BAKYSON',
     model: 'Aviation',
     headline: 'Terminal Security and Comms Built to Code.',
     subhead:
@@ -91,7 +85,6 @@ export const heroSlides: HeroSlide[] = [
   },
   {
     id: 'mining',
-    brand: 'BAKYSON',
     model: 'Remote & Mining Camps',
     headline: 'Reliable Networks and Security Anywhere.',
     subhead:
