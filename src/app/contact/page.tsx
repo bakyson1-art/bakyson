@@ -105,8 +105,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold">Email Us</h3>
                     <p className="text-muted-foreground">
-                      <a href="mailto:info@bakyson.com" className="text-primary hover:underline">
-                        info@bakyson.com
+                      <a href="mailto:hello@bakyson.io" className="text-primary hover:underline">
+                        hello@bakyson.io
                       </a>
                     </p>
                     <p className="text-sm text-muted-foreground mt-1">

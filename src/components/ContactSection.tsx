@@ -93,8 +93,8 @@ export default function ContactSection() {
               <div>
                 <h3 className="font-semibold text-black">Email Us</h3>
                 <p className="text-black/[0.7] mt-1">
-                  <a href="mailto:info@bakyson.com" className="text-[#f3694f] hover:underline font-medium">
-                    info@bakyson.com
+                  <a href="mailto:hello@bakyson.io" className="text-[#f3694f] hover:underline font-medium">
+                    hello@bakyson.io
                   </a>
                 </p>
                 <p className="text-sm text-black/[0.6] mt-1">Sales and general inquiries</p>
