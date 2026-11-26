@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SiteNav from "@/components/site-nav";
+import SiteHeader from "@/components/site-header";
 import PwaStatus from "@/components/pwa-status";
 
 const inter = Inter({
@@ -63,14 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-primary text-primary-foreground px-4 py-2 rounded-md">Skip to content</a>
-        <header className="sticky top-0 z-40 border-b border-border bg-white/80 backdrop-blur">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
-            {/* Full page navigation keeps pages cacheable by the service worker. */}
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/" className="font-semibold text-lg sm:text-xl">Bakyson</a>
-            <SiteNav />
-          </div>
-        </header>
+        <SiteHeader />
         <main id="main-content" className="flex-1">{children}</main>
         <footer className="border-t border-border py-6 sm:py-8 text-center text-xs sm:text-sm text-muted-foreground">
           © 2026 Bakyson. All rights reserved.

@@ -1,5 +1,8 @@
 # Bakyson
 
+> **Agents: read [`PROJECT.md`](./PROJECT.md) first.** It contains the full
+> context, constraints, hero specification, issue log, and open decisions.
+
 Bakyson - ICT Solutions website redesign for Sub-Saharan Africa
 
 - Public website with services, portfolio, contact, careers, blog, and client portal
