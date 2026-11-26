@@ -11,12 +11,31 @@ interface ContainerSize {
 }
 
 export default function BakysonHero() {
+  const stageRef = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState<ContainerSize>({ width: 1280, height: 670 })
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    const el = stageRef.current
+    if (!el) return
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect
+        if (width > 0 && height > 0) {
+          setSize({ width, height })
+        }
+      }
+    })
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   const [index, setIndex] = useState(0)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const slide = heroSlides[index]
 
-  // Auto-cycle every 7 seconds so visitors can read the full subhead
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current)
     timerRef.current = setInterval(() => {
@@ -35,93 +54,232 @@ export default function BakysonHero() {
     }, 7000)
   }
 
+  const computeMainMaskPath = (w: number, h: number) => {
+    const r = 34
+    const notchX = Math.round(w * 0.512)
+    const notchY = Math.round(h * 0.455)
+    const diagTopY = Math.round(h * 0.535)
+    const diagBotX = Math.round(w * 0.675)
+
+    return `
+      M ${notchX + r},0
+      L ${w - r},0
+      Q ${w},0 ${w},${r}
+      L ${w},${diagTopY - r * 0.65}
+      Q ${w},${diagTopY + r * 0.35} ${w - r * 0.65},${diagTopY + r * 1.1}
+      L ${diagBotX + r * 0.65},${h - r * 1.1}
+      Q ${diagBotX},${h} ${diagBotX - r},${h}
+      L ${r},${h}
+      Q 0,${h} 0,${h - r}
+      L 0,${notchY + r}
+      Q 0,${notchY} ${r},${notchY}
+      L ${notchX - r},${notchY}
+      Q ${notchX},${notchY} ${notchX},${notchY - r}
+      L ${notchX},${r}
+      Q ${notchX},0 ${notchX + r},0
+      Z
+    `
+  }
+
+  const computeCornerCardPath = (w: number, h: number) => {
+    const r = 30
+    const gap = 22
+    const diagTopY = Math.round(h * 0.535) + gap
+    const diagBotX = Math.round(w * 0.675) + gap
+
+    return `
+      M ${w - r * 0.65},${diagTopY + r * 1.1}
+      Q ${w},${diagTopY} ${w},${diagTopY + r * 1.6}
+      L ${w},${h - r}
+      Q ${w},${h} ${w - r},${h}
+      L ${diagBotX + r * 1.4},${h}
+      Q ${diagBotX},${h} ${diagBotX + r * 0.8},${h - r * 1.1}
+      Z
+    `
+  }
+
   return (
-    <section className="bg-white overflow-hidden">
-      {/* Top navigation bar */}
-      <header className="max-w-7xl mx-auto px-4 py-6 flex justify-between items-center">
-        <a href="/" className="hover:opacity-80 transition-opacity">
-          <Image
-            src="/images/logo/bakyson-logo.svg"
-            alt="Bakyson"
-            width={175}
-            height={40}
-            className="h-10 w-auto"
-            priority
-          />
-        </a>
+    <section className="min-h-screen w-full bg-[#d6dad8] p-3 sm:p-6 lg:p-8 flex items-center justify-center">
+      {/* Outer Device / Browser Shell */}
+      <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)] border-[5px] sm:border-[6px] border-[#161717]">
+        {/* TOP HEADER NAVIGATION */}
+        <header className="relative z-30 flex items-center justify-between gap-4 mb-5 lg:mb-4">
+          <a
+            href="#top"
+            className="hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3694f] rounded-lg"
+          >
+            <Image
+              src="/images/logo/bakyson-logo.svg"
+              alt="Bakyson"
+              width={175}
+              height={40}
+              className="h-7 sm:h-8"
+              priority
+            />
+          </a>
 
-        <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-8">
-          <a href="/about" className="text-[12px] font-semibold text-black hover:text-[#f3694f] transition-colors">
-            About
-          </a>
-          <a href="#systems" className="text-[12px] font-semibold text-black hover:text-[#f3694f] transition-colors">
-            Systems
-          </a>
-          <a href="/services" className="text-[12px] font-semibold text-black hover:text-[#f3694f] transition-colors">
-            Industries
-          </a>
-          <a href="#contact" className="text-[12px] font-semibold text-black hover:text-[#f3694f] transition-colors">
-            Contact
-          </a>
-        </nav>
+          {/* Desktop Navigation Pill + Order CTA */}
+          <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-2">
+            <div className="flex items-center gap-8 rounded-full border border-[#373a39]/45 bg-[#f4f5f4] px-8 py-2.5 text-[11.5px] font-semibold tracking-[0.06em] text-[#373a39]">
+              <a href="/about" className="hover:text-[#f3694f] transition-colors">
+                About
+              </a>
+              <a href="#systems" className="hover:text-[#f3694f] transition-colors">
+                Systems
+              </a>
+              <a href="/services" className="hover:text-[#f3694f] transition-colors">
+                Industries
+              </a>
+              <a href="#contact" className="hover:text-[#f3694f] transition-colors">
+                Contact
+              </a>
+            </div>
 
-        <a
-          href="#contact"
-          className="group inline-flex items-center gap-2 rounded-full bg-[#f3694f] pl-4 pr-2 py-2 text-[11px] font-semibold text-white transition-all hover:bg-black"
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-3 rounded-full bg-[#373a39] pl-5 pr-1.5 py-1.5 text-[11.5px] font-semibold tracking-[0.06em] text-white transition-all hover:bg-[#222423]"
+            >
+              <span>Book a Demo</span>
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f4f5f4] text-[#373a39] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <ArrowUpRight className="h-4 w-4 stroke-[2.2]" />
+              </span>
+            </a>
+          </nav>
+
+          {/* Mobile Hamburger Trigger */}
+          <div className="flex md:hidden items-center gap-2">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-[#373a39] pl-3.5 pr-1 py-1 text-[11px] font-semibold tracking-wider text-white"
+            >
+              <span>Book</span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4f5f4] text-[#373a39]">
+                <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
+              </span>
+            </a>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#373a39]/40 text-[#373a39]"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+        </header>
+
+        {/* Mobile Dropdown Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mb-5 rounded-2xl border border-[#373a39]/20 bg-white p-4 shadow-lg">
+            <div className="flex flex-col gap-3 text-xs font-semibold tracking-wider text-[#373a39]">
+              <a href="/about" onClick={() => setMobileMenuOpen(false)}>
+                About
+              </a>
+              <a href="#systems" onClick={() => setMobileMenuOpen(false)}>
+                Systems
+              </a>
+              <a href="/services" onClick={() => setMobileMenuOpen(false)}>
+                Industries
+              </a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+                Contact
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* HERO STAGE */}
+        <div
+          ref={stageRef}
+          className="relative w-full lg:h-[660px] xl:h-[700px]"
         >
-          Book a Demo
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-black transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-            <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
-          </span>
-        </a>
-      </header>
+          {/* Dynamic Pixel-Exact SVG Clip Paths for Desktop */}
+          <svg width="0" height="0" className="hidden lg:block absolute pointer-events-none" aria-hidden="true">
+            <defs>
+              <clipPath id="hero-main-exact" clipPathUnits="userSpaceOnUse">
+                <path d={computeMainMaskPath(size.width, size.height)} />
+              </clipPath>
+              <clipPath id="hero-corner-exact" clipPathUnits="userSpaceOnUse">
+                <path d={computeCornerCardPath(size.width, size.height)} />
+              </clipPath>
+            </defs>
+          </svg>
 
-      {/* Hero stage */}
-      <div className="max-w-7xl mx-auto px-4 py-12 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* LEFT: Copy + CTA */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3 select-none mb-2">
+          {/* TOP-LEFT EDITORIAL & CTA BLOCK */}
+          <div className="relative z-20 w-full lg:w-[49%] pt-1 pb-7 lg:pb-0">
+            {/* Brand + Vertical Lockup */}
+            <div className="flex items-center gap-3.5 sm:gap-5 select-none mb-4">
               <Image
                 src="/images/logo/bakyson-logo.svg"
                 alt="Bakyson"
-                width={100}
-                height={23}
-                className="h-6 w-auto"
+                width={148}
+                height={34}
+                className="h-[72%] w-auto text-[#373a39]"
+                priority
               />
-              <span className="text-xs font-semibold text-black tracking-wide uppercase">
+              <div className="h-14 sm:h-20 w-[1.5px] bg-[#373a39]/60" />
+              <span className="text-[#f3694f] font-semibold text-sm sm:text-base tracking-tight uppercase">
                 {slide.model}
               </span>
             </div>
 
-            <h1
-              className="text-3xl lg:text-5xl font-bold text-black leading-tight mb-6"
-            >
-              {slide.headline}
-            </h1>
+            {/* Sub-row: Mini Hand-Held Thumbnail + Description + Pill Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+              <div className="relative h-[136px] w-[144px] sm:h-[160px] sm:w-[170px] shrink-0 overflow-hidden rounded-[22px] bg-[#dfd9d2] shadow-sm">
+                <Image
+                  src={slide.thumbnail}
+                  alt={`${slide.model} thumbnail`}
+                  className="h-full w-full object-cover"
+                  priority
+                />
+              </div>
 
-            <p className="text-lg text-black/[0.85] max-w-lg leading-relaxed mb-8">
-              {slide.subhead}
-            </p>
+              <div className="flex flex-col justify-between max-w-[325px]">
+                <p className="text-[15px] sm:text-[15.5px] leading-[1.45] font-medium text-[#4e5250]">
+                  {slide.subhead}
+                </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#contact"
-                className="bg-[#f3694f] text-white px-6 py-4 rounded-lg text-lg font-medium hover:bg-black transition-colors"
-              >
-                {slide.primaryCta}
-              </a>
-              <a
-                href={slide.secondaryHref}
-                className="bg-white text-black border-2 border-black px-6 py-4 rounded-lg text-lg font-medium hover:bg-black hover:text-white transition-colors"
-              >
-                {slide.secondaryCta}
-              </a>
+                <div className="mt-5 flex flex-wrap items-center gap-1.5">
+                  <a
+                    href="#contact"
+                    className="rounded-full border border-[#373a39]/50 px-4 py-2 text-[11px] font-semibold tracking-[0.05em] text-[#373a39] transition-colors hover:bg-[#373a39] hover:text-white"
+                  >
+                    {slide.primaryCta}
+                  </a>
+
+                  <a
+                    href={slide.secondaryHref}
+                    className="rounded-full border border-[#373a39]/50 px-5 py-2 text-[11px] font-semibold tracking-[0.05em] text-[#373a39] transition-colors hover:bg-[#373a39] hover:text-white"
+                  >
+                    {slide.secondaryCta}
+                  </a>
+
+                  <a
+                    href={slide.secondaryHref}
+                    ariaLabel={`Explore ${slide.model} Systems`}
+                    className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#373a39] text-white transition-transform hover:scale-105"
+                  >
+                    <ArrowUpRight className="h-4 w-4 stroke-[2.2] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* RIGHT: Media */}
-          <div className="relative h-[500px] lg:h-[650px] rounded-[24px] overflow-hidden bg-black shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+          {/* MAIN HERO PHOTOGRAPH */}
+          <div
+            style={{
+              clipPath:
+                typeof window !== 'undefined' && window.innerWidth >= 1024
+                  ? 'url(#hero-main-exact)'
+                  : undefined,
+            }}
+            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden bg-[#2f2a25]"
+          >
             {slide.mediaType === 'video' ? (
               <video
                 autoPlay
@@ -137,14 +295,13 @@ export default function BakysonHero() {
               <Image
                 src={slide.media}
                 alt={slide.model}
-                fill
-                className="object-cover"
+                className="h-full w-full object-cover object-center"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
             )}
 
-            {/* Play button overlay */}
+            {/* Decorative center play button */}
             <button
               onClick={() => jumpTo(index)}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-black/80 transition z-20"
@@ -172,33 +329,51 @@ export default function BakysonHero() {
             </button>
 
             {/* Decorative loading spinners */}
-            <div className="absolute top-1/4 left-1/6 w-10 h-10 border-4 border-black/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
-            <div className="absolute bottom-1/4 right-1/6 w-10 h-10 border-4 border-black/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
+            <div className="absolute top-1/3 left-1/4 w-10 h-10 border-4 border-[#373a39]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
+            <div className="absolute bottom-1/4 right-1/5 w-10 h-10 border-4 border-[#373a39]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
           </div>
-        </div>
 
-        {/* Mobile: media stacked below copy */}
-        <div className="mt-8 lg:hidden relative overflow-hidden rounded-[24px] h-[300px] bg-black flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
-          {slide.mediaType === 'video' ? (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-full w-full object-cover object-center"
-              poster={slide.thumbnail}
-            >
-              <source src={slide.media} type="video/mp4" />
-            </video>
-          ) : (
+          {/* BOTTOM-RIGHT DIAGONAL FEATURE CARD (Desktop) */}
+          <div
+            style={{
+              clipPath: 'url(#hero-corner-exact)',
+            }}
+            className="hidden lg:block absolute inset-0 z-20 pointer-events-none"
+          >
+            <div className="absolute bottom-0 right-0 w-[33%] h-[46.5%] bg-[#4b4d4c] overflow-hidden pointer-events-auto group">
+
+
+              {/* Close-Up Product / Equipment Render */}
+              <Image
+                src={slide.detailMedia}
+                alt={`${slide.model} detail`}
+                className="relative z-10 h-full w-full object-contain object-bottom translate-y-2 translate-x-2 scale-105 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_18px_28px_rgba(0,0,0,0.55)]"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Mobile / Tablet Fallback Feature Strip for the Bottom-Right Render */}
+          <div className="mt-4 lg:hidden relative overflow-hidden rounded-[22px] bg-gradient-to-r from-[#3b3d3c] to-[#232524] p-5 flex items-center justify-between">
+            <div className="z-10 max-w-[60%]">
+              <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#f3694f]">
+                Bakyson · {slide.model}
+              </span>
+              <h2 className="mt-1 text-base font-semibold text-white">
+                {slide.headline}
+              </h2>
+              <p className="mt-1 text-xs text-white/75">
+                {slide.subhead}
+              </p>
+            </div>
             <Image
-              src={slide.media}
-              alt={slide.model}
-              className="h-full w-full object-cover object-center"
-              sizes="100vw"
+              src={slide.detailMedia}
+              alt={`${slide.model} detail`}
+              className="h-28 w-28 object-contain drop-shadow-xl"
               priority
             />
-          )}
+          </div>
         </div>
       </div>
     </section>
