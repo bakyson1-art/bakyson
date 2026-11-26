@@ -260,7 +260,7 @@ export default function BakysonHero() {
 
                   <a
                     href={slide.secondaryHref}
-                    ariaLabel={`Explore ${slide.model} Systems`}
+                    aria-label={`Explore ${slide.model} Systems`}
                     className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#373a39] text-white transition-transform hover:scale-105"
                   >
                     <ArrowUpRight className="h-4 w-4 stroke-[2.2] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
