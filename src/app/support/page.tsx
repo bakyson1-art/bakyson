@@ -1,5 +1,6 @@
 'use client';
 
+import { AlertCircle, Clock } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -102,7 +103,7 @@ export default function SupportPage() {
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600 shrink-0">
-                    <span>🚨</span>
+                    <AlertCircle className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Emergency Support</h3>
@@ -117,7 +118,7 @@ export default function SupportPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
-                    <span>🕐</span>
+                    <Clock className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Support Hours</h3>

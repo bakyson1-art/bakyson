@@ -1,5 +1,6 @@
 'use client';
 
+import { Phone, Mail, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -82,7 +83,7 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                    <span>📞</span>
+                    <Phone className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Call Us</h3>
@@ -99,7 +100,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                    <span>✉️</span>
+                    <Mail className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Email Us</h3>
@@ -116,7 +117,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                    <span>📍</span>
+                    <MapPin className="h-5 w-5" />
                   </div>
                   <div>
                     <h3 className="font-semibold">Our Hubs</h3>

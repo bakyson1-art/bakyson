@@ -5,6 +5,7 @@ import {
   ShieldCheck,
   Leaf,
   Server,
+  Check,
 } from "lucide-react";
 
 const services = [
@@ -132,9 +133,9 @@ export default function ServicesPage() {
             return (
               <article
                 key={service.id}
-                className="group rounded-2xl border border-border bg-card p-8 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                className="group rounded-xl border border-border bg-card shadow-md p-6 hover:shadow-lg transition-all duration-200"
               >
-                <div className={`w-12 h-12 rounded-xl ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <div className={`w-12 h-12 rounded-xl ${service.color} flex items-center justify-center mb-6`}>
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
@@ -144,7 +145,7 @@ export default function ServicesPage() {
                 <ul className="space-y-2 mb-6 text-sm">
                   {service.features.map((f, i) => (
                     <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                      <span className="text-primary-foreground mt-0.5">✓</span>
+                      <Check className="h-4 w-4 shrink-0 mt-0.5 text-primary-foreground" />
                       {f}
                     </li>
                   ))}
@@ -192,7 +193,7 @@ export default function ServicesPage() {
                     <div className="space-y-3">
                       {service.features.map((f, i) => (
                         <div key={i} className="flex items-start gap-3 text-sm opacity-90">
-                          <span className="mt-0.5">✓</span>
+                          <Check className="h-4 w-4 shrink-0 mt-0.5 text-primary-foreground" />
                           {f}
                         </div>
                       ))}
