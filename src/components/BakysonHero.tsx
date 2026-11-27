@@ -101,9 +101,10 @@ export default function BakysonHero() {
   return (
     <section className="min-h-screen w-full bg-[#f4f5f4] p-3 sm:p-6 lg:p-8 flex items-center justify-center">
       {/* Outer Device / Browser Shell */}
-      <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)] border-[5px] sm:border-[6px] border-[#161717]">
+      <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)] border-[4px] sm:border-[5px] border-[#0A0A0A]">
         {/* TOP HEADER NAVIGATION */}
         <header className="relative z-30 flex items-center justify-between gap-4 mb-5 lg:mb-4">
+          {/* Hero Header Logo (site identity in device shell) */}
           <a
             href="#top"
             className="hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3694f] rounded-lg"
@@ -111,9 +112,9 @@ export default function BakysonHero() {
             <Image
               src="/images/logo/bakyson-logo.svg"
               alt="Bakyson"
-              width={175}
-              height={40}
-              className="h-7 sm:h-8"
+              width={150}
+              height={34}
+              className="h-6 sm:h-7"
               priority
             />
           </a>
@@ -211,23 +212,23 @@ export default function BakysonHero() {
 
           {/* TOP-LEFT EDITORIAL & CTA BLOCK */}
           <div className="relative z-20 w-full lg:w-[49%] pt-1 pb-7 lg:pb-0">
-            {/* Brand + Vertical Lockup */}
-            <div className="flex items-center gap-3.5 sm:gap-5 select-none mb-5">
+            {/* Brand Lockup: Logo + Vertical Name (no duplicate site logo here) */}
+            <div className="flex items-center gap-4 sm:gap-6 select-none mb-6">
               <Image
                 src="/images/logo/bakyson-logo.svg"
                 alt="Bakyson"
-                width={148}
-                height={34}
-                className="h-[72%] w-auto text-[#0A0A0A]"
+                width={132}
+                height={30}
+                className="h-[75%] w-auto text-[#0A0A0A]"
                 priority
               />
-              <div className="h-16 sm:h-20 w-[1.5px] bg-[#0A0A0A]/40" />
-              <span className="text-[#f3694f] font-bold text-sm sm:text-base tracking-tight uppercase">
+              <div className="h-18 sm:h-22 w-[1.5px] bg-[#0A0A0A]/30" />
+              <span className="text-[#f3694f] font-black text-sm sm:text-base tracking-tight uppercase">
                 {slide.model}
               </span>
             </div>
 
-            {/* Sub-row: Mini Hand-Held Thumbnail + Description + Pill Buttons */}
+            {/* Sub-row: Thumbnail + Description + Pill Buttons */}
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
               <div className="relative h-[144px] w-[152px] sm:h-[168px] sm:w-[180px] shrink-0 overflow-hidden rounded-[24px] bg-[#0A0A0A]/5 shadow-sm">
                 <Image
@@ -300,37 +301,6 @@ export default function BakysonHero() {
                 priority
               />
             )}
-
-            {/* Decorative center play button */}
-            <button
-              onClick={() => jumpTo(index)}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#0A0A0A]/80 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-[#0A0A0A] transition-all duration-300 z-20"
-              aria-label="Play video"
-            >
-              <svg
-                className="w-7 h-7 text-white ml-0.5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </button>
-
-            {/* Decorative loading spinners */}
-            <div className="absolute top-1/3 left-1/4 w-10 h-10 border-4 border-[#0A0A0A]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
-            <div className="absolute bottom-1/4 right-1/5 w-10 h-10 border-4 border-[#0A0A0A]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
           </div>
 
           {/* BOTTOM-RIGHT DIAGONAL FEATURE CARD (Desktop) */}
