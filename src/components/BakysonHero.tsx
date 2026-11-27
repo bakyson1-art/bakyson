@@ -4,33 +4,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { heroSlides } from '@/data/heroData'
-
-interface ContainerSize {
-  width: number
-  height: number
-}
+import HeroMainPlaceholder from './HeroMainPlaceholder'
 
 export default function BakysonHero() {
-  const stageRef = useRef<HTMLDivElement>(null)
-  const [size, setSize] = useState<ContainerSize>({ width: 1280, height: 670 })
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
-
-  useEffect(() => {
-    const el = stageRef.current
-    if (!el) return
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { width, height } = entry.contentRect
-        if (width > 0 && height > 0) {
-          setSize({ width, height })
-        }
-      }
-    })
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   const [index, setIndex] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -52,74 +29,6 @@ export default function BakysonHero() {
     timerRef.current = setInterval(() => {
       setIndex((idx) => (idx + 1) % heroSlides.length)
     }, 7000)
-  }
-
-  /**
-   * Main hero media mask: notch (top-left) + diagonal cut (bottom-right).
-   * Exact proportions from Wacaco reference layout:
-   *   notchX = 0.505W, notchY = 0.455H
-   *   diagTopY = 0.545H, diagBotX = 0.68W
-   *   Corner fillet radius r = 20px
-   */
-  const computeMainMaskPath = (w: number, h: number) => {
-    const r = 20
-
-    const notchX = Math.round(w * 0.505)
-    const notchY = Math.round(h * 0.455)
-    const diagTopY = Math.round(h * 0.545)
-    const diagBotX = Math.round(w * 0.68)
-
-    return `
-      M ${notchX + r},0
-      L ${w - r},0
-      Q ${w},0 ${w},${r}
-      L ${w},${diagTopY - r * 0.65}
-      Q ${w},${diagTopY + r * 0.35} ${w - r * 0.65},${diagTopY + r * 1.1}
-      L ${diagBotX + r * 0.65},${h - r * 1.1}
-      Q ${diagBotX},${h} ${diagBotX - r},${h}
-      L ${r},${h}
-      Q 0,${h} 0,${h - r}
-      L 0,${notchY + r}
-      Q 0,${notchY} ${r},${notchY}
-      L ${notchX - r},${notchY}
-      Q ${notchX},${notchY} ${notchX},${notchY - r}
-      L ${notchX},${r}
-      Q ${notchX},0 ${notchX + r},0
-      Z
-    `
-  }
-
-  /**
-   * Detail card mask: diagonal cut parallel to main photo's diagonal,
-   * offset along the normal vector by channel width g.
-   *   cardWidth = 0.32W, cardHeight = 0.445H
-   *   Corner fillet radius r = 20px
-   */
-  const computeCornerCardPath = (w: number, h: number) => {
-    const r = 20
-    const gap = 16
-
-    // Main diagonal: from (W, 0.545H) to (0.68W, H)
-    const mainDiagX = w * 0.32
-    const mainDiagY = h * 0.455
-    const mainDiagLen = Math.sqrt(mainDiagX * mainDiagX + mainDiagY * mainDiagY)
-
-    // Unit normal pointing down-right (into card area)
-    const nx = mainDiagY / mainDiagLen
-    const ny = mainDiagX / mainDiagLen
-
-    const diagTopY = Math.round(h * 0.545 + gap * ny)
-    const diagBotX = Math.round(w * 0.68 + gap * nx)
-
-    return `
-      M ${w - r * 0.65},${diagTopY + r * 1.1}
-      Q ${w},${diagTopY} ${w},${diagTopY + r * 1.6}
-      L ${w},${h - r}
-      Q ${w},${h} ${w - r},${h}
-      L ${diagBotX + r * 1.4},${h}
-      Q ${diagBotX},${h} ${diagBotX + r * 0.8},${h - r * 1.1}
-      Z
-    `
   }
 
   return (
@@ -218,22 +127,7 @@ export default function BakysonHero() {
         )}
 
         {/* HERO STAGE */}
-        <div
-          ref={stageRef}
-          className="relative w-full lg:h-[660px] xl:h-[700px]"
-        >
-          {/* Dynamic Pixel-Exact SVG Clip Paths for Desktop */}
-          <svg width="1" height="1" style={{ overflow: 'hidden', position: 'fixed', top: 0, left: 0 }}>
-            <defs>
-              <clipPath id="hero-main-exact" clipPathUnits="userSpaceOnUse">
-                <path d={computeMainMaskPath(size.width, size.height)} />
-              </clipPath>
-              <clipPath id="hero-corner-exact" clipPathUnits="userSpaceOnUse">
-                <path d={computeCornerCardPath(size.width, size.height)} />
-              </clipPath>
-            </defs>
-          </svg>
-
+        <div className="relative w-full lg:h-[660px] xl:h-[700px]">
           {/* TOP-LEFT EDITORIAL & CTA BLOCK */}
           <div className="relative z-20 w-full lg:w-[49%] pt-1 pb-7 lg:pb-0">
             {/* Brand Lockup: Logo + Vertical Name */}
@@ -296,32 +190,13 @@ export default function BakysonHero() {
           </div>
 
           {/* MAIN HERO IMAGE */}
-          <div className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden">
-            <Image
-              src={slide.media}
-              alt={slide.model}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center"
-              priority
-              style={{
-                clipPath:
-                  typeof window !== 'undefined' && window.innerWidth >= 1024
-                    ? 'url(#hero-main-exact)'
-                    : undefined,
-              }}
-            />
+          <div className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full">
+            <HeroMainPlaceholder imageSrc={slide.media} imageAlt={slide.model} />
           </div>
 
           {/* BOTTOM-RIGHT DIAGONAL FEATURE CARD (Desktop) */}
-          <div
-            style={{
-              clipPath: 'url(#hero-corner-exact)',
-            }}
-            className="hidden lg:block absolute inset-0 z-20 pointer-events-none"
-          >
+          <div className="hidden lg:block absolute inset-0 z-20 pointer-events-none">
             <div className="absolute bottom-0 right-0 w-[32%] h-[44%] bg-[#f4f5f4]/50 overflow-hidden pointer-events-auto group">
-
               {/* Close-Up Product / Equipment Render */}
               <Image
                 src={slide.detailMedia}
