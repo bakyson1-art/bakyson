@@ -101,7 +101,7 @@ export default function BakysonHero() {
   return (
     <section className="min-h-screen w-full bg-[#f4f5f4] p-3 sm:p-6 lg:p-8 flex items-center justify-center">
       {/* Outer Device / Browser Shell */}
-      <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)] border-[4px] sm:border-[5px] border-[#0A0A0A]">
+      <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)]">
         {/* TOP HEADER NAVIGATION */}
         <header className="relative z-30 flex items-center justify-between gap-4 mb-5 lg:mb-4">
           {/* Hero Header Logo (site identity in device shell) */}
