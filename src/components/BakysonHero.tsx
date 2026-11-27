@@ -211,7 +211,7 @@ export default function BakysonHero() {
           className="relative w-full lg:h-[660px] xl:h-[700px]"
         >
           {/* Dynamic Pixel-Exact SVG Clip Paths for Desktop */}
-          <svg style={{ width: 0, height: 0, overflow: 'hidden', position: 'fixed', top: 0, left: 0 }} aria-hidden="true">
+          <svg width="1" height="1" style={{ overflow: 'hidden', position: 'fixed', top: 0, left: 0 }}>
             <defs>
               <clipPath id="hero-main-exact" clipPathUnits="userSpaceOnUse">
                 <path d={computeMainMaskPath(size.width, size.height)} />
@@ -284,15 +284,7 @@ export default function BakysonHero() {
           </div>
 
           {/* MAIN HERO IMAGE */}
-          <div
-            style={{
-              clipPath:
-                typeof window !== 'undefined' && window.innerWidth >= 1024
-                  ? 'url(#hero-main-exact)'
-                  : undefined,
-            }}
-            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden"
-          >
+          <div className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden">
             <Image
               src={slide.media}
               alt={slide.model}
@@ -300,6 +292,12 @@ export default function BakysonHero() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
               priority
+              style={{
+                clipPath:
+                  typeof window !== 'undefined' && window.innerWidth >= 1024
+                    ? 'url(#hero-main-exact)'
+                    : undefined,
+              }}
             />
           </div>
 
