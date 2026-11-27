@@ -54,12 +54,20 @@ export default function BakysonHero() {
     }, 7000)
   }
 
+  /**
+   * Main hero media mask: notch (top-left) + diagonal cut (bottom-right).
+   * Proportional estimates based on Wacaco reference layout.
+   */
   const computeMainMaskPath = (w: number, h: number) => {
     const r = 34
-    const notchX = Math.round(w * 0.512)
-    const notchY = Math.round(h * 0.455)
-    const diagTopY = Math.round(h * 0.535)
-    const diagBotX = Math.round(w * 0.675)
+
+    // Notch on top-left: where editorial block overlaps the media
+    const notchX = Math.round(w * 0.50)   // 50% from left edge
+    const notchY = Math.round(h * 0.45)   // 45% down from top
+
+    // Diagonal cut on bottom-right: where detail card overlaps
+    const diagTopY = Math.round(h * 0.53) // 53% down on right edge
+    const diagBotX = Math.round(w * 0.67) // 67% across on bottom edge
 
     return `
       M ${notchX + r},0
@@ -81,11 +89,15 @@ export default function BakysonHero() {
     `
   }
 
+  /**
+   * Detail card mask: diagonal cut matching main mask offset by gap.
+   */
   const computeCornerCardPath = (w: number, h: number) => {
     const r = 30
     const gap = 22
-    const diagTopY = Math.round(h * 0.535) + gap
-    const diagBotX = Math.round(w * 0.675) + gap
+
+    const diagTopY = Math.round(h * 0.53) + gap
+    const diagBotX = Math.round(w * 0.67) + gap
 
     return `
       M ${w - r * 0.65},${diagTopY + r * 1.1}
@@ -104,7 +116,7 @@ export default function BakysonHero() {
       <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)]">
         {/* TOP HEADER NAVIGATION */}
         <header className="relative z-30 flex items-center justify-between gap-4 mb-5 lg:mb-4">
-          {/* Hero Header Logo (site identity in device shell) */}
+          {/* Hero Header Logo */}
           <a
             href="#top"
             className="hover:opacity-80 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f3694f] rounded-lg"
@@ -212,7 +224,7 @@ export default function BakysonHero() {
 
           {/* TOP-LEFT EDITORIAL & CTA BLOCK */}
           <div className="relative z-20 w-full lg:w-[49%] pt-1 pb-7 lg:pb-0">
-            {/* Brand Lockup: Logo + Vertical Name (no duplicate site logo here) */}
+            {/* Brand Lockup: Logo + Vertical Name */}
             <div className="flex items-center gap-4 sm:gap-6 select-none mb-6">
               <Image
                 src="/images/logo/bakyson-logo.svg"
@@ -230,7 +242,7 @@ export default function BakysonHero() {
 
             {/* Sub-row: Thumbnail + Description + Pill Buttons */}
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-              <div className="relative h-[144px] w-[152px] sm:h-[168px] sm:w-[180px] shrink-0 overflow-hidden rounded-[24px] bg-[#0A0A0A]/5 shadow-sm">
+              <div className="relative h-[144px] w-[152px] sm:h-[168px] sm:w-[180px] shrink-0 overflow-hidden rounded-[24px] bg-[#f4f5f4] shadow-sm">
                 <Image
                   src={slide.thumbnail}
                   alt={`${slide.model} thumbnail`}
@@ -279,7 +291,7 @@ export default function BakysonHero() {
                   ? 'url(#hero-main-exact)'
                   : undefined,
             }}
-            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden bg-[#0A0A0A]"
+            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden"
           >
             {slide.mediaType === 'video' ? (
               <video
@@ -310,36 +322,36 @@ export default function BakysonHero() {
             }}
             className="hidden lg:block absolute inset-0 z-20 pointer-events-none"
           >
-            <div className="absolute bottom-0 right-0 w-[33%] h-[46.5%] bg-[#0A0A0A] overflow-hidden pointer-events-auto group">
+            <div className="absolute bottom-0 right-0 w-[33%] h-[46%] bg-[#f4f5f4]/50 overflow-hidden pointer-events-auto group">
 
               {/* Close-Up Product / Equipment Render */}
               <Image
                 src={slide.detailMedia}
                 alt={`${slide.model} detail`}
-                className="relative z-10 h-full w-full object-contain object-bottom translate-y-2 translate-x-2 scale-105 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_18px_28px_rgba(0,0,0,0.6)]"
+                className="relative z-10 h-full w-full object-contain object-bottom translate-y-2 translate-x-2 scale-105 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_18px_28px_rgba(0,0,0,0.4)]"
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 priority
               />
             </div>
           </div>
 
-          {/* Mobile / Tablet Fallback Feature Strip for the Bottom-Right Render */}
-          <div className="mt-5 lg:hidden relative overflow-hidden rounded-[24px] bg-gradient-to-r from-[#333333] to-[#0A0A0A] p-6 flex items-center justify-between">
+          {/* Mobile / Tablet Fallback Feature Strip */}
+          <div className="mt-5 lg:hidden relative overflow-hidden rounded-[24px] bg-[#f4f5f4] p-6 flex items-center justify-between border border-[#0A0A0A]/20">
             <div className="z-10 max-w-[60%]">
               <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#f3694f]">
                 Bakyson · {slide.model}
               </span>
-              <h2 className="mt-1 text-lg font-bold text-white">
+              <h2 className="mt-1 text-lg font-bold text-[#0A0A0A]">
                 {slide.headline}
               </h2>
-              <p className="mt-1 text-xs text-white/80">
+              <p className="mt-1 text-xs text-[#0A0A0A]/70">
                 {slide.subhead}
               </p>
             </div>
             <Image
               src={slide.detailMedia}
               alt={`${slide.model} detail`}
-              className="h-28 w-28 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+              className="h-28 w-28 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]"
               priority
             />
           </div>
