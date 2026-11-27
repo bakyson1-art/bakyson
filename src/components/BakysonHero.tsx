@@ -56,18 +56,18 @@ export default function BakysonHero() {
 
   /**
    * Main hero media mask: notch (top-left) + diagonal cut (bottom-right).
-   * Proportional estimates based on Wacaco reference layout.
+   * Exact proportions from Wacaco reference layout:
+   *   notchX = 0.505W, notchY = 0.455H
+   *   diagTopY = 0.545H, diagBotX = 0.68W
+   *   Corner fillet radius r = 20px
    */
   const computeMainMaskPath = (w: number, h: number) => {
-    const r = 34
+    const r = 20
 
-    // Notch on top-left: where editorial block overlaps the media
-    const notchX = Math.round(w * 0.50)   // 50% from left edge
-    const notchY = Math.round(h * 0.45)   // 45% down from top
-
-    // Diagonal cut on bottom-right: where detail card overlaps
-    const diagTopY = Math.round(h * 0.53) // 53% down on right edge
-    const diagBotX = Math.round(w * 0.67) // 67% across on bottom edge
+    const notchX = Math.round(w * 0.505)
+    const notchY = Math.round(h * 0.455)
+    const diagTopY = Math.round(h * 0.545)
+    const diagBotX = Math.round(w * 0.68)
 
     return `
       M ${notchX + r},0
@@ -90,14 +90,26 @@ export default function BakysonHero() {
   }
 
   /**
-   * Detail card mask: diagonal cut matching main mask offset by gap.
+   * Detail card mask: diagonal cut parallel to main photo's diagonal,
+   * offset along the normal vector by channel width g.
+   *   cardWidth = 0.32W, cardHeight = 0.445H
+   *   Corner fillet radius r = 20px
    */
   const computeCornerCardPath = (w: number, h: number) => {
-    const r = 30
-    const gap = 22
+    const r = 20
+    const gap = 16
 
-    const diagTopY = Math.round(h * 0.53) + gap
-    const diagBotX = Math.round(w * 0.67) + gap
+    // Main diagonal: from (W, 0.545H) to (0.68W, H)
+    const mainDiagX = w * 0.32
+    const mainDiagY = h * 0.455
+    const mainDiagLen = Math.sqrt(mainDiagX * mainDiagX + mainDiagY * mainDiagY)
+
+    // Unit normal pointing down-right (into card area)
+    const nx = mainDiagY / mainDiagLen
+    const ny = mainDiagX / mainDiagLen
+
+    const diagTopY = Math.round(h * 0.545 + gap * ny)
+    const diagBotX = Math.round(w * 0.68 + gap * nx)
 
     return `
       M ${w - r * 0.65},${diagTopY + r * 1.1}
@@ -242,7 +254,7 @@ export default function BakysonHero() {
 
             {/* Sub-row: Thumbnail + Description + Pill Buttons */}
             <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-              <div className="relative h-[144px] w-[152px] sm:h-[168px] sm:w-[180px] shrink-0 overflow-hidden rounded-[24px] bg-[#f4f5f4] shadow-sm">
+              <div className="relative h-[138px] w-[144px] sm:h-[156px] sm:w-[168px] shrink-0 overflow-hidden rounded-[20px] bg-[#f4f5f4] shadow-sm">
                 <Image
                   src={slide.thumbnail}
                   alt={`${slide.model} thumbnail`}
@@ -308,7 +320,7 @@ export default function BakysonHero() {
             }}
             className="hidden lg:block absolute inset-0 z-20 pointer-events-none"
           >
-            <div className="absolute bottom-0 right-0 w-[33%] h-[46%] bg-[#f4f5f4]/50 overflow-hidden pointer-events-auto group">
+            <div className="absolute bottom-0 right-0 w-[32%] h-[44%] bg-[#f4f5f4]/50 overflow-hidden pointer-events-auto group">
 
               {/* Close-Up Product / Equipment Render */}
               <Image
