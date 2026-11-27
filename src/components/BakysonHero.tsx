@@ -199,7 +199,7 @@ export default function BakysonHero() {
           className="relative w-full lg:h-[660px] xl:h-[700px]"
         >
           {/* Dynamic Pixel-Exact SVG Clip Paths for Desktop */}
-          <svg width="0" height="0" className="hidden lg:block absolute pointer-events-none" aria-hidden="true">
+          <svg width="0" height="0" className="absolute -inset-px w-0 h-0 pointer-events-none" aria-hidden="true">
             <defs>
               <clipPath id="hero-main-exact" clipPathUnits="userSpaceOnUse">
                 <path d={computeMainMaskPath(size.width, size.height)} />
