@@ -99,7 +99,7 @@ export default function BakysonHero() {
   }
 
   return (
-    <section className="min-h-screen w-full bg-[#d6dad8] p-3 sm:p-6 lg:p-8 flex items-center justify-center">
+    <section className="min-h-screen w-full bg-[#f4f5f4] p-3 sm:p-6 lg:p-8 flex items-center justify-center">
       {/* Outer Device / Browser Shell */}
       <div className="relative w-full max-w-[1400px] rounded-[26px] sm:rounded-[32px] bg-[#f4f5f4] p-5 sm:p-8 lg:p-10 shadow-[0_24px_70px_rgba(0,0,0,0.14)] border-[5px] sm:border-[6px] border-[#161717]">
         {/* TOP HEADER NAVIGATION */}
@@ -120,7 +120,7 @@ export default function BakysonHero() {
 
           {/* Desktop Navigation Pill + Order CTA */}
           <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-2">
-            <div className="flex items-center gap-8 rounded-full border border-[#373a39]/45 bg-[#f4f5f4] px-8 py-2.5 text-[11.5px] font-semibold tracking-[0.06em] text-[#373a39]">
+            <div className="flex items-center gap-8 rounded-full border border-[#0A0A0A]/45 bg-[#f4f5f4] px-8 py-2.5 text-[11px] font-semibold tracking-[0.08em] text-[#0A0A0A]">
               <a href="/about" className="hover:text-[#f3694f] transition-colors">
                 About
               </a>
@@ -137,10 +137,10 @@ export default function BakysonHero() {
 
             <a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#373a39] pl-5 pr-1.5 py-1.5 text-[11.5px] font-semibold tracking-[0.06em] text-white transition-all hover:bg-[#222423]"
+              className="group inline-flex items-center gap-3 rounded-full bg-[#0A0A0A] pl-5 pr-1.5 py-1.5 text-[11px] font-semibold tracking-[0.08em] text-white transition-all hover:bg-[#f3694f] hover:text-[#0A0A0A]"
             >
               <span>Book a Demo</span>
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f4f5f4] text-[#373a39] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f4f5f4] text-[#0A0A0A] transition-transform duration-300 group-hover:bg-[#f3694f] group-hover:text-[#0A0A0A] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                 <ArrowUpRight className="h-4 w-4 stroke-[2.2]" />
               </span>
             </a>
@@ -150,10 +150,10 @@ export default function BakysonHero() {
           <div className="flex md:hidden items-center gap-2">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#373a39] pl-3.5 pr-1 py-1 text-[11px] font-semibold tracking-wider text-white"
+              className="inline-flex items-center gap-2 rounded-full bg-[#0A0A0A] pl-3.5 pr-1 py-1 text-[11px] font-semibold tracking-wider text-white"
             >
               <span>Book</span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4f5f4] text-[#373a39]">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#f4f5f4] text-[#0A0A0A]">
                 <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.2]" />
               </span>
             </a>
@@ -161,7 +161,7 @@ export default function BakysonHero() {
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#373a39]/40 text-[#373a39]"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#0A0A0A]/40 text-[#0A0A0A]"
             >
               {mobileMenuOpen ? (
                 <X className="h-4 w-4" />
@@ -174,8 +174,8 @@ export default function BakysonHero() {
 
         {/* Mobile Dropdown Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden mb-5 rounded-2xl border border-[#373a39]/20 bg-white p-4 shadow-lg">
-            <div className="flex flex-col gap-3 text-xs font-semibold tracking-wider text-[#373a39]">
+          <div className="md:hidden mb-5 rounded-2xl border border-[#0A0A0A]/20 bg-white p-4 shadow-lg">
+            <div className="flex flex-col gap-3 text-xs font-semibold tracking-wider text-[#0A0A0A]">
               <a href="/about" onClick={() => setMobileMenuOpen(false)}>
                 About
               </a>
@@ -212,24 +212,24 @@ export default function BakysonHero() {
           {/* TOP-LEFT EDITORIAL & CTA BLOCK */}
           <div className="relative z-20 w-full lg:w-[49%] pt-1 pb-7 lg:pb-0">
             {/* Brand + Vertical Lockup */}
-            <div className="flex items-center gap-3.5 sm:gap-5 select-none mb-4">
+            <div className="flex items-center gap-3.5 sm:gap-5 select-none mb-5">
               <Image
                 src="/images/logo/bakyson-logo.svg"
                 alt="Bakyson"
                 width={148}
                 height={34}
-                className="h-[72%] w-auto text-[#373a39]"
+                className="h-[72%] w-auto text-[#0A0A0A]"
                 priority
               />
-              <div className="h-14 sm:h-20 w-[1.5px] bg-[#373a39]/60" />
-              <span className="text-[#f3694f] font-semibold text-sm sm:text-base tracking-tight uppercase">
+              <div className="h-16 sm:h-20 w-[1.5px] bg-[#0A0A0A]/40" />
+              <span className="text-[#f3694f] font-bold text-sm sm:text-base tracking-tight uppercase">
                 {slide.model}
               </span>
             </div>
 
             {/* Sub-row: Mini Hand-Held Thumbnail + Description + Pill Buttons */}
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
-              <div className="relative h-[136px] w-[144px] sm:h-[160px] sm:w-[170px] shrink-0 overflow-hidden rounded-[22px] bg-[#dfd9d2] shadow-sm">
+            <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+              <div className="relative h-[144px] w-[152px] sm:h-[168px] sm:w-[180px] shrink-0 overflow-hidden rounded-[24px] bg-[#0A0A0A]/5 shadow-sm">
                 <Image
                   src={slide.thumbnail}
                   alt={`${slide.model} thumbnail`}
@@ -238,22 +238,22 @@ export default function BakysonHero() {
                 />
               </div>
 
-              <div className="flex flex-col justify-between max-w-[325px]">
-                <p className="text-[15px] sm:text-[15.5px] leading-[1.45] font-medium text-[#4e5250]">
+              <div className="flex flex-col justify-between max-w-[340px]">
+                <p className="text-[16px] sm:text-[17px] leading-[1.5] font-medium text-[#0A0A0A]/90">
                   {slide.subhead}
                 </p>
 
-                <div className="mt-5 flex flex-wrap items-center gap-1.5">
+                <div className="mt-6 flex flex-wrap items-center gap-2">
                   <a
                     href="#contact"
-                    className="rounded-full border border-[#373a39]/50 px-4 py-2 text-[11px] font-semibold tracking-[0.05em] text-[#373a39] transition-colors hover:bg-[#373a39] hover:text-white"
+                    className="rounded-full border border-[#0A0A0A]/40 px-5 py-2.5 text-[11px] font-bold tracking-[0.06em] text-[#0A0A0A] transition-all duration-300 hover:bg-[#f3694f] hover:border-[#f3694f] hover:text-white"
                   >
                     {slide.primaryCta}
                   </a>
 
                   <a
                     href={slide.secondaryHref}
-                    className="rounded-full border border-[#373a39]/50 px-5 py-2 text-[11px] font-semibold tracking-[0.05em] text-[#373a39] transition-colors hover:bg-[#373a39] hover:text-white"
+                    className="rounded-full border border-[#0A0A0A]/40 px-6 py-2.5 text-[11px] font-bold tracking-[0.06em] text-[#0A0A0A] transition-all duration-300 hover:bg-[#f3694f] hover:border-[#f3694f] hover:text-white"
                   >
                     {slide.secondaryCta}
                   </a>
@@ -261,9 +261,9 @@ export default function BakysonHero() {
                   <a
                     href={slide.secondaryHref}
                     aria-label={`Explore ${slide.model} Systems`}
-                    className="group flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#373a39] text-white transition-transform hover:scale-105"
+                    className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0A0A0A] text-white transition-all duration-300 hover:bg-[#f3694f] hover:scale-105"
                   >
-                    <ArrowUpRight className="h-4 w-4 stroke-[2.2] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="h-4 w-4 stroke-[2.2] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>
               </div>
@@ -278,7 +278,7 @@ export default function BakysonHero() {
                   ? 'url(#hero-main-exact)'
                   : undefined,
             }}
-            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden bg-[#2f2a25]"
+            className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden bg-[#0A0A0A]"
           >
             {slide.mediaType === 'video' ? (
               <video
@@ -304,11 +304,11 @@ export default function BakysonHero() {
             {/* Decorative center play button */}
             <button
               onClick={() => jumpTo(index)}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-black/80 transition z-20"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-[#0A0A0A]/80 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-[#0A0A0A] transition-all duration-300 z-20"
               aria-label="Play video"
             >
               <svg
-                className="w-6 h-6 text-white ml-1"
+                className="w-7 h-7 text-white ml-0.5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -329,8 +329,8 @@ export default function BakysonHero() {
             </button>
 
             {/* Decorative loading spinners */}
-            <div className="absolute top-1/3 left-1/4 w-10 h-10 border-4 border-[#373a39]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
-            <div className="absolute bottom-1/4 right-1/5 w-10 h-10 border-4 border-[#373a39]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
+            <div className="absolute top-1/3 left-1/4 w-10 h-10 border-4 border-[#0A0A0A]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
+            <div className="absolute bottom-1/4 right-1/5 w-10 h-10 border-4 border-[#0A0A0A]/20 border-t-[#f3694f] rounded-full animate-spin z-20" />
           </div>
 
           {/* BOTTOM-RIGHT DIAGONAL FEATURE CARD (Desktop) */}
@@ -340,14 +340,13 @@ export default function BakysonHero() {
             }}
             className="hidden lg:block absolute inset-0 z-20 pointer-events-none"
           >
-            <div className="absolute bottom-0 right-0 w-[33%] h-[46.5%] bg-[#4b4d4c] overflow-hidden pointer-events-auto group">
-
+            <div className="absolute bottom-0 right-0 w-[33%] h-[46.5%] bg-[#0A0A0A] overflow-hidden pointer-events-auto group">
 
               {/* Close-Up Product / Equipment Render */}
               <Image
                 src={slide.detailMedia}
                 alt={`${slide.model} detail`}
-                className="relative z-10 h-full w-full object-contain object-bottom translate-y-2 translate-x-2 scale-105 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_18px_28px_rgba(0,0,0,0.55)]"
+                className="relative z-10 h-full w-full object-contain object-bottom translate-y-2 translate-x-2 scale-105 transition-transform duration-500 group-hover:scale-110 drop-shadow-[0_18px_28px_rgba(0,0,0,0.6)]"
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 priority
               />
@@ -355,22 +354,22 @@ export default function BakysonHero() {
           </div>
 
           {/* Mobile / Tablet Fallback Feature Strip for the Bottom-Right Render */}
-          <div className="mt-4 lg:hidden relative overflow-hidden rounded-[22px] bg-gradient-to-r from-[#3b3d3c] to-[#232524] p-5 flex items-center justify-between">
+          <div className="mt-5 lg:hidden relative overflow-hidden rounded-[24px] bg-gradient-to-r from-[#333333] to-[#0A0A0A] p-6 flex items-center justify-between">
             <div className="z-10 max-w-[60%]">
               <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#f3694f]">
                 Bakyson · {slide.model}
               </span>
-              <h2 className="mt-1 text-base font-semibold text-white">
+              <h2 className="mt-1 text-lg font-bold text-white">
                 {slide.headline}
               </h2>
-              <p className="mt-1 text-xs text-white/75">
+              <p className="mt-1 text-xs text-white/80">
                 {slide.subhead}
               </p>
             </div>
             <Image
               src={slide.detailMedia}
               alt={`${slide.model} detail`}
-              className="h-28 w-28 object-contain drop-shadow-xl"
+              className="h-28 w-28 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
               priority
             />
           </div>

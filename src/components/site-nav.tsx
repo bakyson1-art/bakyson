@@ -30,17 +30,19 @@ const nav = [
 const megaIndustries = [
   { label: "Hospitality", href: "/services#hospitality" },
   { label: "Healthcare", href: "/services#healthcare" },
-  { label: "Corporate", href: "/services#corporate" },
-  { label: "Education", href: "/services#education" },
+  { label: "Corporate & Commercial", href: "/services#corporate" },
+  { label: "Learning Institutions", href: "/services#learning" },
+  { label: "Aviation", href: "/services#aviation" },
+  { label: "Remote & Mining Camps", href: "/services#mining" },
 ];
 
 const megaServices = [
-  { label: "Structured Cabling", href: "/services#cabling" },
-  { label: "CCTV & Security", href: "/services#cctv" },
-  { label: "Fire Alarm Systems", href: "/services#fire" },
-  { label: "Access Control", href: "/services#access" },
-  { label: "Public Address", href: "/services#pa" },
-  { label: "Network Solutions", href: "/services#network" },
+  { label: "Infotainment", href: "/services#infotainment" },
+  { label: "Networks & Communication", href: "/services#networks" },
+  { label: "Audio Visual", href: "/services#audio-visual" },
+  { label: "Safety & Security", href: "/services#safety-security" },
+  { label: "Green Solutions", href: "/services#green-solutions" },
+  { label: "Back of House", href: "/services#back-of-house" },
 ];
 
 export default function SiteNav() {

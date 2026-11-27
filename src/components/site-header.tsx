@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import SiteNav from "@/components/site-nav";
 
@@ -20,7 +21,16 @@ export default function SiteHeader() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between">
         {/* Full page navigation keeps pages cacheable by the service worker. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a href="/" className="font-semibold text-lg sm:text-xl">Bakyson</a>
+        <a href="/" className="flex items-center gap-2">
+          <Image
+            src="/images/logo/bakyson-logo.svg"
+            alt="Bakyson"
+            width={132}
+            height={30}
+            className="h-6 sm:h-7"
+            priority
+          />
+        </a>
         <SiteNav />
       </div>
     </header>

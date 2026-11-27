@@ -33,7 +33,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     }
   },
-  pages: { signIn: '/portal/login' },
+  pages: { signIn: '/portal' },
   secret: process.env.NEXTAUTH_SECRET
 };
 

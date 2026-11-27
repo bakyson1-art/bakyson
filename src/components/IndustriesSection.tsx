@@ -39,61 +39,55 @@ export default function IndustriesSection() {
   ]
 
   return (
-    <section id="industries" className="bg-white py-20 lg:py-32 border-t border-black/10">
+    <section id="industries" className="bg-background py-24 lg:py-40 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 lg:mb-24">
+        {/* Section Header */}
+        <div className="text-center mb-20 lg:mb-32 relative">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-[2px] w-24 bg-[#f3694f]"></div>
           <span
-            className="inline-block px-4 py-1.5 rounded-full bg-[#f3694f]/10 text-[#f3694f] text-xs font-semibold tracking-wider uppercase mb-4"
+            className="inline-block px-5 py-2 rounded-full bg-[#f3694f]/10 text-[#f3694f] text-[10px] font-bold tracking-[0.15em] uppercase mb-5"
           >
             Industries We Serve
           </span>
-          <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight mb-6">
+          <h2 className="text-4xl lg:text-7xl font-bold text-[#0A0A0A] leading-tight mb-6 tracking-tight">
             Tailored ELV Infrastructure for Every Sector
           </h2>
-          <p className="text-lg text-black/[0.75] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-[#0A0A0A]/85 max-w-2xl mx-auto leading-relaxed">
             Purpose-built low-voltage solutions for the environments where
             reliability is non-negotiable.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Industry Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
           {verticals.map((v) => (
             <article
               key={v.id}
-              className="
-                border border-black/10
-                rounded-[24px]
-                bg-white
-                p-6 lg:p-8
-                shadow-[0_12px_30px_rgba(0,0,0,0.06)]
-                hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]
-                transition-all
-                group
-              "
+              className="border border-[#0A0A0A]/20 rounded-[32px] bg-background p-8 lg:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 ease-out group border-l-4 border-[#f3694f]"
             >
-              <div className="flex items-start justify-between mb-5">
+              <div className="flex items-start justify-between mb-8">
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-1">
+                  <h3 className="font-black text-[#0A0A0A] text-xl lg:text-2xl mb-3 tracking-tight">
                     {v.name}
                   </h3>
-                  <p className="text-xs font-medium text-[#f3694f] uppercase tracking-wider">
+                  <p className="text-[11px] font-bold text-[#f3694f] uppercase tracking-[0.15em]">
                     {v.tagline}
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#f3694f]/10 flex items-center justify-center text-[#f3694f] group-hover:bg-[#f3694f] group-hover:text-white transition-colors">
-                  <span className="text-[10px] font-bold">
+                <div className="w-12 h-12 rounded-full bg-[#f3694f] text-white flex items-center justify-center group-hover:bg-[#0A0A0A] transition-all duration-500">
+                  <span className="text-[12px] font-black">
                     {v.id.charAt(0).toUpperCase()}
                   </span>
                 </div>
               </div>
 
-              <p className="text-sm text-black/[0.85] leading-relaxed mb-8">
+              <p className="text-base text-[#0A0A0A]/80 leading-relaxed mb-10 group-hover:text-[#0A0A0A] transition-colors duration-300">
                 {v.desc}
               </p>
 
               <a
                 href="/services"
-                className="inline-flex items-center justify-center w-full bg-[#f3694f] text-white px-5 py-3 rounded-full text-sm font-semibold hover:bg-black transition-colors"
+                className="inline-flex items-center justify-center w-full bg-[#f3694f] text-white px-6 py-3.5 rounded-full text-xs font-bold tracking-[0.1em] uppercase hover:bg-[#c94a3f] hover:-translate-y-0.5 transition-all duration-300"
               >
                 Explore {v.name} Systems
                 <svg

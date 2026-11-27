@@ -45,45 +45,48 @@ export default function SystemsSection() {
   ]
 
   return (
-    <section id="systems" className="bg-white py-20 lg:py-32 border-t border-black/10">
+    <section id="systems" className="bg-background py-24 lg:py-40 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 lg:mb-24">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#f3694f]/10 text-[#f3694f] text-xs font-semibold tracking-wider uppercase mb-4">
+        {/* Section Header */}
+        <div className="text-center mb-20 lg:mb-32 relative">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 h-[2px] w-24 bg-[#f3694f]"></div>
+          <span className="inline-block px-5 py-2 rounded-full bg-[#f3694f]/10 text-[#f3694f] text-[10px] font-bold tracking-[0.15em] uppercase mb-5">
             Our Systems
           </span>
-          <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight mb-6">
+          <h2 className="text-4xl lg:text-7xl font-bold text-[#0A0A0A] leading-tight mb-6 tracking-tight">
             Extra Low Voltage ICT Systems
           </h2>
-          <p className="text-lg text-black/[0.75] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-[#0A0A0A]/85 max-w-2xl mx-auto leading-relaxed">
             Purpose-built low-voltage infrastructure for mission-critical
             environments. Every system is designed, installed, and supported by
             one partner.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* System Vertical Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
           {verticals.map((v) => (
-            <article key={v.id} className="border border-black/10 rounded-[24px] bg-white p-6 lg:p-8 shadow-[0_12px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all group">
-              <div className="flex items-start justify-between mb-5">
+            <article key={v.id} className="border border-[#0A0A0A]/20 rounded-[32px] bg-background p-8 lg:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 ease-out group border-l-4 border-[#f3694f]">
+              <div className="flex items-start justify-between mb-8">
                 <div>
-                  <h3 className="text-xl font-bold text-black mb-1">{v.name}</h3>
-                  <p className="text-xs font-medium text-[#f3694f] uppercase tracking-wider">{v.tagline}</p>
+                  <h3 className="font-black text-[#0A0A0A] text-xl lg:text-2xl mb-3 tracking-tight">{v.name}</h3>
+                  <p className="text-[11px] font-bold text-[#f3694f] uppercase tracking-[0.15em]">{v.tagline}</p>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-[#f3694f]/10 flex items-center justify-center text-[#f3694f] group-hover:bg-[#f3694f] group-hover:text-white transition-colors">
-                  <span className="text-[10px] font-bold">{v.id.charAt(0).toUpperCase()}</span>
+                <div className="w-12 h-12 rounded-full bg-[#f3694f] text-white flex items-center justify-center group-hover:bg-[#0A0A0A] transition-all duration-500">
+                  <span className="text-[12px] font-black">{v.id.charAt(0).toUpperCase()}</span>
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3.5 mb-10">
                 {v.systems.map((s) => (
-                  <li key={s} className="flex items-start gap-2.5 text-sm text-black/[0.85] leading-relaxed">
-                    <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0 mt-[6px]" />
+                  <li key={s} className="flex items-start gap-3 text-sm text-[#0A0A0A]/85 leading-relaxed group-hover:text-[#0A0A0A] transition-colors duration-300">
+                    <span className="w-2 h-2 rounded-full bg-[#f3694f] shrink-0 mt-[7px]" />
                     {s}
                   </li>
                 ))}
               </ul>
 
-              <a href="#contact" className="inline-flex items-center justify-center w-full bg-[#f3694f] text-white px-5 py-3 rounded-full text-sm font-semibold hover:bg-black transition-colors">
+              <a href="#contact" className="inline-flex items-center justify-center w-full bg-[#f3694f] text-white px-6 py-3.5 rounded-full text-xs font-bold tracking-[0.1em] uppercase hover:bg-[#c94a3f] hover:-translate-y-0.5 transition-all duration-300">
                 {v.cta}
                 <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -93,15 +96,22 @@ export default function SystemsSection() {
           ))}
         </div>
 
-        <div className="mt-16 lg:mt-24 border-t border-black/20 pt-12 lg:pt-16">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+        {/* Trust Bar */}
+        <div className="mt-24 lg:mt-32 border-t border-[#0A0A0A]/20 pt-20 lg:pt-28">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
             <div className="text-center sm:text-left">
-              <p className="text-sm font-semibold text-black/[0.6] uppercase tracking-wider mb-2">Trusted across sectors</p>
-              <p className="text-lg font-bold text-black">150+ installations nationwide</p>
+              <p className="text-[11px] font-bold text-[#f3694f] uppercase tracking-[0.15em] mb-3">Trusted across sectors</p>
+              <p className="text-2xl font-black text-[#0A0A0A] tracking-tight">150+ installations nationwide</p>
             </div>
-            <div className="flex items-center gap-8 text-sm text-black/[0.6]">
-              <span>Hotels · Schools · Corporates · Mining</span>
-              <span>Residential · Telecoms · ISPs</span>
+            <div className="flex items-center gap-10 text-sm text-[#0A0A0A]/60">
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#f3694f]" />
+                Hotels · Schools · Corporates · Mining
+              </span>
+              <span className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-[#f3694f]" />
+                Residential · Telecoms · ISPs
+              </span>
             </div>
           </div>
         </div>
