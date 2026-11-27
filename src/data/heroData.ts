@@ -8,7 +8,7 @@ export type HeroSlide = {
   secondaryHref: string
   thumbnail: string
   media: string
-  mediaType: 'video' | 'image'
+  mediaType: 'image'
   detailMedia: string
 }
 
@@ -23,8 +23,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Hotel Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/hospitality-thumb.jpg',
-    media: '/images/hospitality.mp4',
-    mediaType: 'video',
+    media: '/images/hospitality-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/hospitality-detail.jpg',
   },
   {
@@ -37,8 +37,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Healthcare Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/healthcare-thumb.jpg',
-    media: '/images/healthcare.mp4',
-    mediaType: 'video',
+    media: '/images/healthcare-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/healthcare-detail.jpg',
   },
   {
@@ -51,8 +51,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Commercial Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/corporate-thumb.jpg',
-    media: '/images/corporate.mp4',
-    mediaType: 'video',
+    media: '/images/corporate-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/corporate-detail.jpg',
   },
   {
@@ -65,8 +65,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Campus Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/learning-thumb.jpg',
-    media: '/images/learning.mp4',
-    mediaType: 'video',
+    media: '/images/learning-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/learning-detail.jpg',
   },
   {
@@ -79,8 +79,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Aviation Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/aviation-thumb.jpg',
-    media: '/images/aviation.mp4',
-    mediaType: 'video',
+    media: '/images/aviation-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/aviation-detail.jpg',
   },
   {
@@ -93,8 +93,8 @@ export const heroSlides: HeroSlide[] = [
     secondaryCta: 'View Remote Camp Systems',
     secondaryHref: '#systems',
     thumbnail: '/images/mining-thumb.jpg',
-    media: '/images/mining.mp4',
-    mediaType: 'video',
+    media: '/images/mining-detail.jpg',
+    mediaType: 'image',
     detailMedia: '/images/mining-detail.jpg',
   },
 ]

@@ -283,7 +283,7 @@ export default function BakysonHero() {
             </div>
           </div>
 
-          {/* MAIN HERO PHOTOGRAPH */}
+          {/* MAIN HERO IMAGE */}
           <div
             style={{
               clipPath:
@@ -293,27 +293,14 @@ export default function BakysonHero() {
             }}
             className="relative lg:absolute lg:inset-0 w-full h-[380px] sm:h-[460px] lg:h-full rounded-[26px] lg:rounded-none overflow-hidden"
           >
-            {slide.mediaType === 'video' ? (
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                controlsList="noDownload"
-                className="h-full w-full object-cover object-center"
-                poster={slide.thumbnail}
-              >
-                <source src={slide.media} type="video/mp4" />
-              </video>
-            ) : (
-              <Image
-                src={slide.media}
-                alt={slide.model}
-                className="h-full w-full object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-            )}
+            <Image
+              src={slide.media}
+              alt={slide.model}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+              priority
+            />
           </div>
 
           {/* BOTTOM-RIGHT DIAGONAL FEATURE CARD (Desktop) */}
